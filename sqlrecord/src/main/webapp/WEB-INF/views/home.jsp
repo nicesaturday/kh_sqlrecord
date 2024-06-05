@@ -9,8 +9,8 @@
  
 <!-- Slick 불러오기 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
-<link rel="stylesheet" href="${hpath }/resources/css/slick/slick.min.css?after5"/>
-<link rel="stylesheet" href="${hpath }/resources/css/slick/slick-theme.min.css?after5"/>
+<link rel="stylesheet" href="${hpath }/resources/css/slick/slick.min.css?after1"/>
+<link rel="stylesheet" href="${hpath }/resources/css/slick/slick-theme.min.css?after1"/>
 	<title>Home</title>
 	<style>
 	

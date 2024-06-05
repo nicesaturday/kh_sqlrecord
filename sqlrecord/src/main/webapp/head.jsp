@@ -9,6 +9,6 @@
 <script src="${hpath }/js/jquery-3.2.1.min.js"></script>
 <meta property="og:url" content="">
 <meta property="og:title" content="samdasu">
-<meta property="og:description" content="게임 , 콘솔 ">
+<meta property="og:description" content="레코드 , LP">
 <meta property="og:type" content="website">
 <%-- <meta property="og:image" content="${hpath }/img/favicon.png"> --%>
