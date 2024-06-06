@@ -25,6 +25,16 @@ body {
     font-family: 'GmarketSansMedium', sans-serif;
 }
 
+/* 영문 텍스트에 Gibstone 폰트 적용 */
+:lang(en) {
+    font-family: 'Gibstone Trial Regular', sans-serif;
+}
+/* 한글 텍스트에 GmarketSans 폰트 적용 */
+:lang(ko) {
+    font-family: 'GmarketSansMedium', sans-serif;
+}
+
+
 a {color: #fff; text-decoration: none; outline: none} 
 a:hover, a:active {text-decoration: none; color:#fff; }
 
@@ -47,7 +57,7 @@ ul , li {
 
 #main_footer {
 	width: 100%;
-	height: 400px;
+	height: 300px;
 	background-color: #383637;
 	position: relative;
 }

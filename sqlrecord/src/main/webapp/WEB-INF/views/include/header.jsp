@@ -44,20 +44,6 @@
     margin-right:30px;
 }
 </style>
-<style>
-#main_header2 {
-    width: 100%;
-    height: 100px;
-    background-color: #FFF;
-    display: flex;
-    align-items:center;
-    justify-content: space-between;
-    padding: 0 20px;
-    
-    position: -webkit-sticky; /* For Safari */
-    position: sticky;
-}
-</style>
 </head>
 
     <nav class="navbar" id="main_header1">
@@ -108,61 +94,3 @@
 	        </div>
         </div>
     </nav>
-    
-<!-- 헤더2(fixed) -->
-<div>
-<nav class="navbar" id="main_header2">
-        <div class="navleft">
-        
-        	<div class="navbar-brand">
-			    <a class="navbar-item" href="${path1 }" class="logo-wrap">
-			        <img src="${path1}/resources/images/logo2transp.png" alt="LOGO" class="logo">
-			    </a>
-			</div>
-			
-	        <div class="navbar-start">
-	            <div class="navbar-item">
-	                <a href="${path1 }/qna/getQnaList.do">
-	                    고객지원
-	                </a>
-				</div>
-				<div class="navbar-item">
-		            <a href="${path1 }/board/getBoardList.do">
-		                공지사항
-		            </a>
-				</div>
-	        </div>
-        </div>
-        
-        <div class="navright">
-	        <div class="navbar-end">
-	            <div class="navbar-item">
-	                <c:if test="${!empty sid}">
-	                	<a href="${path1}/member/mypage.do">
-	                        마이페이지
-	                    </a>
-	                    <a href="${path1}/member/logout.do">
-	                        로그아웃
-	                    </a>
-	                </c:if>
-	                <c:if test="${empty sid}">
-	                    <a href="${path1}/member/login.do">
-	                        로그인
-	                    </a>
-	                    <a href="${path1}/member/term.do">
-	                        회원가입
-	                    </a>
-	                </c:if>
-	                <c:if test="${sid.equals('admin')}">
-	                    <a href="${path1}/admin/adminpage.do">
-	                        관리자페이지
-	                    </a>
-	                    <a href="${path1}/member/logout.do">
-	                        로그아웃
-	                    </a>
-	                </c:if>
-	            </div>
-	        </div>
-        </div>
-    </nav>
-</div>
