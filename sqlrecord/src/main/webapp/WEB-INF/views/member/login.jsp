@@ -1,15 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions"%>
+<c:set var="path2" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
-<html lang="KO">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <title>Document</title>
-    <link rel="stylesheet" href="login.css">
-    
+<meta charset="UTF-8">
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="${path2}/resources/js/login.js"></script>
+<link rel="stylesheet" href="${path2}/resources/css/login.css">
+<title>Login</title>
 </head>
 <body>
-    <div class="tab_content">
+	<div class="tab_content">
         <button class="pop_clo"><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 -960 960 960" width="12px" fill="#EA3323"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></button>
           <p class="pop_op" style="text-align: center;
                   cursor: pointer;
@@ -49,7 +55,7 @@
     <section class="contbox">
         <div class="cont">
             <div class="form sign-in">
-                <img class="logo" src="imgs/SQL LCODE.png" alt="">
+                <img class="logo" src="${path2}/resources/imgs/login/SQL LCODE.png" alt="">
                     
                     <form id="accesspanel" name="loginForm" action="${path2 }/member/loginPro.do" method="post">
                         <div class="inset">
@@ -152,8 +158,5 @@
             </div>
         </div>
     </section>
-    
-    <script src="login.js"></script>
-    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </body>
 </html>

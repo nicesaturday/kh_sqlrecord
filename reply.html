@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        * {margin: 0; padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .score-wrapper {border: 1px solid #333;
+            font-size: 50px;
+        }
+        .score {position: relative;
+            display: inline-flex; 
+            
+            border: 1px solid red;
+        }
+        .foreground {
+            overflow: hidden;
+            width: 60%;
+        }
+        .background {position: absolute;}
+
+    </style>
+</head>
+<body>
+    <div class="score-wrapper">
+        <div class="score">
+            <p class="foreground">★★★★★</p>
+            <p class="background">☆☆☆☆☆</p>
+        </div>
+        <span class="point">4.3</span>
+    </div>
+
+    <div class="comment-write">
+        <input class="ywriter" id="ywriter" type="text" placeholder="작성자">
+        <input class="ywriter" id="ycontent" type="text" placeholder="내용">
+        <button class="wrbtn" onclick="commentWrite()">댓글작성</button>
+    </div>
+
+    <div class="comment-list">
+
+    </div>
+
+    <script>
+        $(function(){
+            const rate = "3.5";
+            const max = 5;
+            const percent = rate/max *100;
+            $(".score-wrapper").find(".foreground").css("width",percent+"%");
+            $(".score-wrapper").find(".point").text(rate);
+        });
+
+        const commentWrite = () => {
+            const writer = document.getElementById("ywriter").value;
+            const contents = document.getElementById("ycontent").value;
+            console.log("작성자 :" ,writer);
+            console.log("내용 :" ,contents);
+        }
+
+    </script>
+</body>
+</html>
