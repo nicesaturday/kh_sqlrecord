@@ -1,6 +1,8 @@
 
 create database sqlgames;
 
+
+
 use sqlgames;
 
 

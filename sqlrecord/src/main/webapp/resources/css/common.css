@@ -64,7 +64,9 @@ body {
 a { text-decoration: none; outline: none} 
 a:hover, a:active {text-decoration: none; color:#fff; }
 
-
+img {
+	width: 100%;
+}
 
 
 ul , li {
@@ -83,7 +85,7 @@ ul , li {
 
 #main_footer {
 	width: 100%;
-	height: 400px;
+	height: 300px;
 	background-color: #383637;
 	position: relative;
 }
