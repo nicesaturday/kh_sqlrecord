@@ -15,3 +15,18 @@ create table member (
     tag2 varchar(20),				-- 관심태그2
     tag3 varchar(20)				-- 관심태그3
 );
+
+create table reply (
+	id varchar(30) primary key,
+    rno int auto_increment unique,
+    content varchar(2000),
+    resdate timestamp default current_timestamp,
+    star float
+);
+drop table reply;
+insert into reply values('asd123',default,12,'내용1',default,3.5);
+insert into reply values('asd12',default,12,'내용2',default,2.5);
+insert into reply values('asd1',default,12,'내용3',default,4.5);
+insert into reply values('sdfsdf',default,12,'내용3',default,4.5);
+select * from reply;
+select * from reply order by rno desc;

@@ -59,6 +59,23 @@
             const contents = document.getElementById("ycontent").value;
             console.log("작성자 :" ,writer);
             console.log("내용 :" ,contents);
+
+            // 게시글 번호 필요
+            $.ajax({
+                type : "post",
+                url :"" ,
+                data : {
+                    "ywriter" : writer,
+                    "ycontent" : contents,
+
+                },
+                success : function(res) {
+                    consol.log("요청성공" , res);
+                },
+                error : function(err) {
+                    consol.log("요청실패", err);
+                }
+            });
         }
 
     </script>
