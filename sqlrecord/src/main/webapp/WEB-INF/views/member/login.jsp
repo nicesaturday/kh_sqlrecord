@@ -94,15 +94,15 @@
         </div>
             <div class="sub-cont">
 			    <div class="img">
-			        <div class="img__text m--up">
+			        <div class="img__text m--up" style="margin-top: 50px;">
 			            <h2>New here?</h2>
 			            <p>Sign up and discover great amount of new opportunities!</p>
 			        </div>
-			        <div class="img__text m--in">
+			        <div class="img__text m--in" style="margin-top: 50px;">
 			            <h2>One of us?</h2>
 			            <p>If you already has an account, just sign in. We've missed you!</p>
 			        </div>
-			        <div class="img__btn">
+			        <div class="img__btn" style="margin-top: 50px;">
 			            <span class="m--up">JOIN</span>
 			            <span class="m--in">LOGIN</span>
 			        </div>
@@ -157,13 +157,13 @@
 			            </p>
 			            <p style="font-size: 15px; font-weight: 600;">관심 게임 장르</p>
 			            <p>
-			                <label style="width: 180px;"><input type="checkbox" name="genre" value="RPG"> RECORD PLAYERS</label>
-			                <label style="width: 180px;"><input type="checkbox" name="genre" value="FPS"> SPEAKERS</label>
-			                <label style="width: 180px;"><input type="checkbox" name="genre" value="MOBA"> RADIOS</label>
-			                <label style="width: 180px;"><input type="checkbox" name="genre" value="RTS"> CD PLAYERS</label>
-			                <label style="width: 180px;"><input type="checkbox" name="genre" value="Sports"> CASSETTE PLAYERS</label>
-			                <label style="width: 180px;"><input type="checkbox" name="genre" value="Action"> MEDIA STANDS</label>
-			                <label style="width: 180px;"><input type="checkbox" name="genre" value="Adventure"> VINYL</label>
+			                <label style="width: 180px;"><input type="checkbox" name="genre" value="RECORD PLAYERS"> RECORD PLAYERS</label>
+			                <label style="width: 180px;"><input type="checkbox" name="genre" value="SPEAKERS"> SPEAKERS</label>
+			                <label style="width: 180px;"><input type="checkbox" name="genre" value="RADIOS"> RADIOS</label>
+			                <label style="width: 180px;"><input type="checkbox" name="genre" value="CD PLAYERS"> CD PLAYERS</label>
+			                <label style="width: 180px;"><input type="checkbox" name="genre" value="CASSETTE PLAYERS"> CASSETTE PLAYERS</label>
+			                <label style="width: 180px;"><input type="checkbox" name="genre" value="MEDIA STANDS"> MEDIA STANDS</label>
+			                <label style="width: 180px;"><input type="checkbox" name="genre" value="VINYL"> VINYL</label>
 			                
 			                <input type="hidden" id="tag1" name="tag1">
 			                <input type="hidden" id="tag2" name="tag2">
@@ -206,17 +206,6 @@
 	    	});
 	    }
 	    
-	    function joinCheck(f){
-            if(f.pw.value!=f.pw2.value){
-                alert("비밀번호와 비밀번호 확인이 서로 다릅니다.");
-                f.pw.focus();
-                return false;
-            }
-            if(f.idck.value!="yes"){
-                alert("아이디 중복 체크를 하지 않으셨습니다.");
-                return false;
-            }
-        }
     </script>
     <script src="${path2}/resources/js/login.js"></script>
 </body>

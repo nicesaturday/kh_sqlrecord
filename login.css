@@ -61,6 +61,7 @@ body {
     width: 260px; /* $imgW */
     height: 100%;
     padding-top: 360px;
+    
 }
 
 .img:before {
@@ -72,7 +73,7 @@ body {
     height: 100%;
     background-image: url('imgs/e2c17eb8fa492366b69bf6c2d0af73a0.jpg');
     background-size: cover;
-    background-position-y: -50px;
+    background-position-y: -100px;
     transition: transform 1.2s ease-in-out; /* $switchAT */
 }
 

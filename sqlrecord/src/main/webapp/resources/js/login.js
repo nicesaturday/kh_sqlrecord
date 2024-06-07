@@ -22,7 +22,17 @@
 
         //회원가입
         
-        
+        function joinCheck(f){
+            if(f.pw.value!=f.pw2.value){
+                alert("비밀번호와 비밀번호 확인이 서로 다릅니다.");
+                f.pw.focus();
+                return false;
+            }
+            if(f.idck.value!="yes"){
+                alert("아이디 중복 체크를 하지 않으셨습니다.");
+                return false;
+            }
+        }
         
         
         //우편번호 검색
@@ -59,4 +69,5 @@
             document.getElementById('tag1').value = selectTgas[0] || ''; // 첫 번째 장르를 설정
             document.getElementById('tag2').value = selectTgas[1] || ''; // 두 번째 장르를 설정
             document.getElementById('tag3').value = selectTgas[2] || ''; // 세 번째 장르를 설정
+        	return true;
         }

@@ -83,18 +83,18 @@
         .review .review-title {
             display: flex;
             align-items: center;
+            display: block;
         }
         .review .review-title .stars {
             display: flex;
             align-items: center;
         }
         .review .review-title .stars span {
-            margin-left: 5px;
             font-size: 18px;
         }
         .review .review-title .date {
-            margin-left: 20px;
             color: #999;
+            font-weight: 600;
         }
         .review .review-content {
             margin-top: 10px;
@@ -122,9 +122,18 @@
         .recontent {border: none;
             border-bottom: 1px solid #333;
             margin-top: 15px;
-            width: 80%; 
+            width: 60%; 
             font-size: 15px;
             font-weight: 600;
+        }
+
+        .rebtn1 {border: none; 
+            background-color: #fff; 
+            cursor: pointer;
+        }
+
+        #tilte {display: block;
+            margin: 5px 0px;
         }
     </style>
 </head>
@@ -179,13 +188,16 @@
                 <span style="font-size: 25px;" >5</span>
             </div>
             <input class="recontent" id="content" type="text" placeholder="리뷰를 작성해주세요.">
+            <button class="rebtn1" id="rebtn1"><img style="width: 20px; height: 20px; " src="move_9743734.png" alt=""></button>
+            <button class="rebtn2" id="rebtn2">등록</button>
         </div>
         <div class="reviews">
             <div class="review">
                 <div class="review-title">
-                    <div class="stars">
+                    <div class="stars" >
                         <span>★★★★☆</span>
                     </div>
+                    <span id="tilte">제목입니다</span>
                     <div class="date">2019.03.30</div>
                 </div>
                 <div class="review-content">
