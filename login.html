@@ -87,67 +87,73 @@
                         <span class="m--in">LOGIN</span>
                     </div>
                 </div>
-                <div class="inset">
-                    <p>
-                        <label class="label" for="id">아이디</label>
-                        <input type="text" id="id" name="id">
-                        <button class="ybtn" type="button" onclick="checkId()">중복검사</button>
-                        <input type="hidden" name="idck" id="idck" value="no"/>
-                        <c:if test="${empty qid }">
+                <form name="frm1" id="frm1" action="${path2 }/member/joinPro.do" method="post" onsubmit="return joinCheck(this)"></form>
+                    <div class="inset">
+                        <p>
+                            <label class="label" for="id">아이디</label>
+                            <input type="text" id="id" name="id">
+                            <button class="ybtn" type="button" onclick="checkId()">중복검사</button>
+                            <input type="hidden" name="idck" id="idck" value="no"/>
+                            <c:if test="${empty qid }">
                             <p id="msg" style="clear:both;padding:0.5rem;margin-left:100px" value=""></p>
-                        </c:if>
-                    </p>
-                    <p>
-                        <label for="pw">비밀번호</label>
-                        <input type="password" id="pw" name="pw">
-                    </p>
-                    <p>
-                        <label for="pw">비밀번호 확인</label>
-                        <input type="password" id="pw2" name="pw2">
-                    </p>
-                    <p>
-                        <label for="name">이름</label>
-                        <input type="text" id="name" name="name">
-                    </p>
-                    <p>
-                        <label for="email">이메일</label>
-                        <input type="text" id="email" name="email">
-                    </p>
-                    <p>
-                        <label for="tel">연락처</label>
-                        <input type="text" id="tel" name="tel">
-                    </p>
-                    <p>
-                        <label for="postcode">우편번호</label>
-                        <input type="text" id="postcode" name="postcode">
-                        <button class="ybtn" type="button" onclick="searchpostcode()">주소 검색</button>
-                    </p>
-                    <p>
-                        <label for="addr1">주소</label>
-                        <input type="text" id="addr1" name="addr1">
-                    </p>
-                    <p>
-                        <label for="addr2">상세주소</label>
-                        <input type="text" id="addr2" name="addr2">
-                    </p>
-                    <p>
-                        <label for="birth">생년월일</label>
-                        <input type="date" id="birth" name="birth">
-                    </p>
-                    <p style="font-size: 15px; font-weight: 600; margin-left: 20px; margin-bottom: 10px;">관심 게임 장르</p>
-                    <div class="checkbox-group">
-                        <label style="width: 180px;"><input type="checkbox" name="genre" value="RPG"> RECORD PLAYERS</label>
-                        <label style="width: 180px;"><input type="checkbox" name="genre" value="FPS"> SPEAKERS</label>
-                        <label style="width: 180px;"><input type="checkbox" name="genre" value="MOBA"> RADIOS</label>
-                        <label style="width: 180px;"><input type="checkbox" name="genre" value="RTS"> CD PLAYERS</label>
-                        <label style="width: 180px;"><input type="checkbox" name="genre" value="Sports"> CASSETTE PLAYERS</label>
-                        <label style="width: 180px;"><input type="checkbox" name="genre" value="Action"> MEDIA STANDS</label>
-                        <label style="width: 180px;"><input type="checkbox" name="genre" value="Adventure"> VINYL</label>
-                        <input type="hidden" id="tag1" name="tag1">
-                        <input type="hidden" id="tag2" name="tag2">
-                        <input type="hidden" id="tag3" name="tag3">
+                            </c:if>
+                        </p>
+                        <p>
+                            <label for="pw">비밀번호</label>
+                            <input type="password" id="pw" name="pw">
+                        </p>
+                        <p>
+                            <label for="pw">비밀번호 확인</label>
+                            <input type="password" id="pw2" name="pw2">
+                        </p>
+                        <p>
+                            <label for="name">이름</label>
+                            <input type="text" id="name" name="name">
+                        </p>
+                        <p>
+                            <label for="email">이메일</label>
+                            <input type="text" id="email" name="email">
+                        </p>
+                        <p>
+                            <label for="tel">연락처</label>
+                            <input type="text" id="tel" name="tel">
+                        </p>
+                        <p>
+                            <label for="postcode">우편번호</label>
+                            <input type="text" id="postcode" name="postcode">
+                            <button class="ybtn" type="button" onclick="searchpostcode()">주소 검색</button>
+                        </p>
+                        <p>
+                            <label for="addr1">주소</label>
+                            <input type="text" id="addr1" name="addr1">
+                        </p>
+                        <p>
+                            <label for="addr2">상세주소</label>
+                            <input type="text" id="addr2" name="addr2">
+                        </p>
+                        <p>
+                            <label for="birth">생년월일</label>
+                            <input type="date" id="birth" name="birth">
+                        </p>
+                        <p style="font-size: 15px; font-weight: 600;">관심 게임 장르</p>
+                        <p>
+                            <label style="width: 180px;"><input type="checkbox" name="genre" value="RPG"> RECORD PLAYERS</label>
+                            <label style="width: 180px;"><input type="checkbox" name="genre" value="FPS"> SPEAKERS</label>
+                            <label style="width: 180px;"><input type="checkbox" name="genre" value="MOBA"> RADIOS</label>
+                            <label style="width: 180px;"><input type="checkbox" name="genre" value="RTS"> CD PLAYERS</label>
+                            <label style="width: 180px;"><input type="checkbox" name="genre" value="Sports"> CASSETTE PLAYERS</label>
+                            <label style="width: 180px;"><input type="checkbox" name="genre" value="Action"> MEDIA STANDS</label>
+                            <label style="width: 180px;"><input type="checkbox" name="genre" value="Adventure"> VINYL</label>
+                            
+                            <input type="hidden" id="tag1" name="tag1">
+                            <input type="hidden" id="tag2" name="tag2">
+                            <input type="hidden" id="tag3" name="tag3">
+                        </p>
                     </div>
-                    <button type="button" class="joinsubmit">JOIN</button>
+                    <p class="p-container">
+                        <input type="submit" value="JOIN" onclick="setGenreTags()">
+                    </p>
+                </form>
                 </div>
             </div>
         </div>

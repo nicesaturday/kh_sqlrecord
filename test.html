@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Review Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        .review-header {
+            
+            margin-top: 20px;
+        }
+        .review-header h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .overall-rating {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+        }
+        .individual-rating {
+            display: flex;
+            flex-direction: column; /* Change flex direction to column */
+            justify-content: space-between;
+            margin: 20px 0;
+            padding-right: 20px; /* Add padding to the right */
+            border-right: 1px solid #ccc; /* Add right border to create a separator */
+        }
+        .individual-rating .bar-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .bar-container {width: 340px;}
+
+        .individual-rating .bar {
+            height: 10px;
+            background-color: #ccc;
+            margin-left: 10px;
+            border-radius: 5px;
+            width: 200px;
+            position: relative;
+        }
+        .individual-rating .bar span {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background-color: #ffcc00;
+            border-radius: 5px;
+        }
+        .total-rating {
+            width: 321px;
+            margin-left: 30px;
+            display: flex;
+            align-items: center;
+            padding-left: 20px; /* Add padding to the left */
+        }
+        .total-rating h2 {
+            margin: 0; padding: 0;
+        }
+        .total-rating .rating-details {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .reviews {
+            margin-top: 20px;
+        }
+        .review {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+        .review .review-title {
+            display: flex;
+            align-items: center;
+        }
+        .review .review-title .stars {
+            display: flex;
+            align-items: center;
+        }
+        .review .review-title .stars span {
+            margin-left: 5px;
+            font-size: 18px;
+        }
+        .review .review-title .date {
+            margin-left: 20px;
+            color: #999;
+        }
+        .review .review-content {
+            margin-top: 10px;
+        }
+        .review .review-images {
+            display: flex;
+            margin-top: 10px;
+        }
+        .review .review-images img {
+            width: 60px;
+            height: 60px;
+            margin-right: 10px;
+            background-color: #ccc;
+        }
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .pagination a {
+            margin: 0 5px;
+            text-decoration: none;
+            color: #000;
+        }
+        
+        .recontent {border: none;
+            border-bottom: 1px solid #333;
+            margin-top: 15px;
+            width: 80%; 
+            font-size: 15px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="review-header" style="text-align: center;">
+            <h1>REVIEW</h1>
+        </div>
+        <div class="overall-rating">
+            <div class="individual-rating">
+                <div class="bar-container">
+                    <span>5점</span>
+                    <div class="bar"><span style="width: 90%;"></span></div>
+                    <span>17</span> 
+                </div>
+                <div class="bar-container">
+                    <span>4점</span>
+                    <div class="bar"><span style="width: 7%;"></span></div>
+                    <span>3</span>
+                </div>
+                <div class="bar-container">
+                    <span>3점</span>
+                    <div class="bar"><span style="width: 0%;"></span></div>
+                    <span>0</span>
+                </div>
+                <div class="bar-container">
+                    <span>2점</span>
+                    <div class="bar"><span style="width: 0%;"></span></div>
+                    <span>0</span>
+                </div>
+                <div class="bar-container">
+                    <span>1점</span>
+                    <div class="bar"><span style="width: 0%;"></span></div>
+                    <span>0</span>
+                </div>
+            </div>
+            <div class="total-rating">
+                <div style="text-align: center;">
+                    <p style="margin-bottom: 5px; margin-top: 0px;">전체 평점</p>
+                    <h2 style="font-size: 35px;">4.9</h2>
+                </div>
+                <div class="rating-details" style="margin-left: 30px;">
+                    <span>★★★★★</span>
+                    <span>9개 리뷰</span>
+                </div>
+            </div>
+        </div>
+        <div class="review-header">
+            <p>리뷰 작성하기</p>
+            <div class="stars">
+                <span style="font-size: 25px; cursor: pointer;">★★★★★</span>
+                <span style="font-size: 25px;" >5</span>
+            </div>
+            <input class="recontent" id="content" type="text" placeholder="리뷰를 작성해주세요.">
+        </div>
+        <div class="reviews">
+            <div class="review">
+                <div class="review-title">
+                    <div class="stars">
+                        <span>★★★★☆</span>
+                    </div>
+                    <div class="date">2019.03.30</div>
+                </div>
+                <div class="review-content">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                </div>
+                <div class="review-images">
+                    <img src="#" alt="review image 1">
+                    <img src="#" alt="review image 2">
+                </div>
+            </div>
+            <div class="review">
+                <div class="review-title">
+                    <div class="stars">
+                        <span>★★★☆☆</span>
+                    </div>
+                    <div class="date">2019.03.30</div>
+                </div>
+                <div class="review-content">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                </div>
+                <div class="review-images">
+                    <img src="#" alt="review image 1">
+                    <img src="#" alt="review image 2">
+                    <img src="#" alt="review image 3">
+                </div>
+            </div>
+        </div>
+        <div class="pagination">
+            <a href="#">&laquo;</a>
+            <a href="#">1</a>
+            <a href="#">2</a>
+            <a href="#">&raquo;</a>
+        </div>
+    </div>
+</body>
+</html>

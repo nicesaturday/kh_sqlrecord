@@ -95,7 +95,7 @@ public class MemberController {
 	}
 	
 	@PostMapping("loginPro.do")
-	public String loginPro(@RequestParam("id") String id, @RequestParam("pw") String pw, Model model, RedirectAttributes rttr) {
+	public String loginPro(@RequestParam("lid") String id, @RequestParam("lpw") String pw, Model model, RedirectAttributes rttr) {
 		session.invalidate();
 		Member cus = memberService.getMember(id);
 		
