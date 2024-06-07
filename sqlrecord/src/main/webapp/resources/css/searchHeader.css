@@ -5,7 +5,7 @@
 .sticky {
     position: -webkit-sticky; /* For Safari */
     position: sticky;
-    top: 0;
+    top: -2px;
 }
 
 
@@ -25,7 +25,7 @@
 	    max-width: 1700px;
 	    display: flex;
 	    justify-content: space-between;
-	     transition: all 1s ease; /* 박스에 부드러운 전환 효과 추가 */
+	    transition: all 1s ease; /* 박스에 부드러운 전환 효과 추가 */
 	  }
 	  #section_serch_item1 {
 	  	width: 1200px;

@@ -47,7 +47,7 @@
 	  #section_video {
 	    display: flex;
 	  	width: 100%;
-	  	height: 100%;
+	  	height: 710px;
 	  	justify-content: center;
 	  	
 	  }
