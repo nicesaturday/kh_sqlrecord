@@ -11,10 +11,10 @@
     font-style: normal;
 }
 @font-face {
-    font-family: 'D2Coding';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/D2Coding.woff') format('woff');
-    font-weight: bold;
+    font-family: 'Gibstone Trial Medium';
     font-style: normal;
+    font-weight: normal;
+    src: local('Gibstone Trial Medium'), url('GibstoneTrial-Medium.woff') format('woff');
 }
 
 body {
@@ -22,16 +22,7 @@ body {
     height: 100vh;
     overflow-x: hidden;
     background-color: #EDEDED;
-    font-family: 'GmarketSansMedium', sans-serif;
-}
-
-/* 영문 텍스트에 Gibstone 폰트 적용 */
-:lang(en) {
-    font-family: 'Gibstone Trial Regular', sans-serif;
-}
-/* 한글 텍스트에 GmarketSans 폰트 적용 */
-:lang(ko) {
-    font-family: 'GmarketSansMedium', sans-serif;
+    font-family: 'Gibstone Trial Medium', sans-serif;
 }
 
 

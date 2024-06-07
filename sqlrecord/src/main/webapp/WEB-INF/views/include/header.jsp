@@ -17,14 +17,13 @@
     display: flex;
     align-items:center;
     justify-content: space-between;
-    padding: 0 20px;
 }
 .navleft, .navright {
     display: flex;
     align-items: center;
-    margin-left:80px;
-    margin-right:80px;
+	margin: 0 150px;
 }
+
 .logo {
 	display:flex;
     max-height: 75px;
@@ -36,12 +35,9 @@
     align-items: center;
     margin-left: 20px;
 }
-.navbar-item a {
-    color: white;
-    text-decoration: none;
-    display: inline-block;
-    font-size:14px;
-    margin-right:30px;
+.navbar-item {
+	margin: 0 50px;
+	display: inline-block;
 }
 </style>
 </head>
@@ -65,30 +61,42 @@
         
         <div class="navright">
 	        <div class="navbar-end">
-	            <div class="navbar-item">
+	            <div class="">
 	                <c:if test="${!empty sid}">
-	                	<a href="${path1}/member/mypage.do">
-	                        마이페이지
-	                    </a>
-	                    <a href="${path1}/member/logout.do">
-	                        로그아웃
-	                    </a>
+		                <div class="navbar-item">
+		                	<a href="${path1}/member/mypage.do">
+		                        마이페이지
+		                    </a>
+		                </div>
+		                <div class="navbar-item">
+		                    <a href="${path1}/member/logout.do">
+		                        로그아웃
+		                    </a>
+		                </div>
 	                </c:if>
 	                <c:if test="${empty sid}">
-	                    <a href="${path1}/member/login.do">
-	                        로그인
-	                    </a>
-	                    <a href="${path1}/member/term.do">
-	                        회원가입
-	                    </a>
+	                	<div class="navbar-item">
+		                    <a href="${path1}/member/login.do">
+		                        로그인
+		                    </a>
+	                    </div>
+	                    <div class="navbar-item">
+		                    <a href="${path1}/member/term.do">
+		                        회원가입
+		                    </a>
+	                    </div>
 	                </c:if>
 	                <c:if test="${sid.equals('admin')}">
-	                    <a href="${path1}/admin/adminpage.do">
-	                        관리자페이지
-	                    </a>
-	                    <a href="${path1}/member/logout.do">
-	                        로그아웃
-	                    </a>
+	                	<div class="navbar-item">
+		                    <a href="${path1}/admin/adminpage.do">
+		                        관리자페이지
+		                    </a>
+	                    </div>
+	                    <div class="navbar-item">
+		                    <a href="${path1}/member/logout.do">
+		                        로그아웃
+		                    </a>
+	                    </div>
 	                </c:if>
 	            </div>
 	        </div>

@@ -9,6 +9,7 @@
 	justify-content: space-between;
 	align-items:center;
 	position: relative;
+	min-width:900px;
 }
 .sns_btn {
 	display:flex;
@@ -56,6 +57,7 @@
 .personalTerms_item {
 	padding: 10px;
 	margin: 10 0px;
+	margin-right:20px;
 }
 .navbar-brand {
 	max-width:150px;

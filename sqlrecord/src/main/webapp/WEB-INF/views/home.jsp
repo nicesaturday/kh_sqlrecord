@@ -22,7 +22,6 @@
     top: 0; /* Sticky position at the top */
     justify-content: space-between;
  	vertical-align:center;
- 	padding: 0 20px;
  	background-color: #FFF;
  	z-index: 9999;
  }
@@ -49,16 +48,18 @@
     align-items: center;
     margin: 0 15px;
 }
-.navbar-brand {
+.navbar-brand1 {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
 }
-.logo {
+.logo-wrap {
     height: 100%;
     width: auto;
 	margin: 0 auto;
+	justify-content: center;
+	align-items: center;
 }
 .section_serch_item_box {
     display: flex;
@@ -70,6 +71,8 @@
 }
 .section_serch_item_textBox a {
 	color:black;
+	font-weight:700;
+	font-size:20px;
 }
 .basketlogo {
     width: auto;
@@ -205,7 +208,7 @@
 <div id="main_content">
   <div id="section_serch">
       <div id="section_serch_item1">
-       	<div class="navbar-brand">
+       	<div class="navbar-brand1">
 		    <a class="navbar-item" href="${path1 }" class="logo-wrap">
 		        <img src="${path1}/resources/images/logo2transp.png" alt="LOGO" class="logo">
 		    </a>
