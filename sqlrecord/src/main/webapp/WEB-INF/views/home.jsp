@@ -22,6 +22,7 @@
     top: 0; /* Sticky position at the top */
     justify-content: space-between;
  	vertical-align:center;
+ 	padding: 0 20px;
  	background-color: #FFF;
  	z-index: 9999;
  }
