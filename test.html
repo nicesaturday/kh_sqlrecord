@@ -2,8 +2,11 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>Review Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문서</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
+        
         body {
             font-family: Arial, sans-serif;
         }
@@ -135,6 +138,13 @@
         #tilte {display: block;
             margin: 5px 0px;
         }
+        .score-wrapper { position: relative; }
+        .score { position: relative; display: inline-flex; cursor: pointer; }
+        .foreground { overflow: hidden; width: 60%; }
+        .background { position: absolute; }
+
+        .popup { display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 20px; border: 1px solid #333; background: #fff; }
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); }
     </style>
 </head>
 <body>
@@ -170,6 +180,7 @@
                     <span>0</span>
                 </div>
             </div>
+        
             <div class="total-rating">
                 <div style="text-align: center;">
                     <p style="margin-bottom: 5px; margin-top: 0px;">전체 평점</p>
@@ -181,11 +192,22 @@
                 </div>
             </div>
         </div>
+        <div class="overlay" id="overlay"><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 -960 960 960" width="12px" fill="#EA3323"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div> 
+        <div class="popup" id="popup">
+            <p>평점을 입력하세요:</p>
+            <input type="number" id="ratingInput" min="0" max="5" step="0.1">
+            <button onclick="submitRating()">제출</button>
+        </div>
         <div class="review-header">
             <p>리뷰 작성하기</p>
             <div class="stars">
-                <span style="font-size: 25px; cursor: pointer;">★★★★★</span>
-                <span style="font-size: 25px;" >5</span>
+                <div class="score-wrapper">
+                    <div class="score" id="starRating">
+                        <p class="foreground" font-size: 25px; cursor: pointer;>★★★★★</p>
+                        <p class="background" font-size: 25px; cursor: pointer;>☆☆☆☆☆</p>
+                    </div>
+                    <span class="point" style="font-size: 25px;" >3</span>
+                </div>
             </div>
             <input class="recontent" id="content" type="text" placeholder="리뷰를 작성해주세요.">
             <button class="rebtn1" id="rebtn1"><img style="width: 20px; height: 20px; " src="move_9743734.png" alt=""></button>
@@ -232,5 +254,64 @@
             <a href="#">&raquo;</a>
         </div>
     </div>
+    <script>
+        function updateRating(rate) {
+            const max = 5;
+            const percent = (rate / max) * 100;
+            $(".score-wrapper").find(".foreground").css("width", percent + "%");
+            $(".score-wrapper").find(".point").text(rate);
+        }
+
+        //jquery를 이용한 show/hide 
+        function openPopup() {
+            $("#overlay").show();
+            $("#popup").show();
+        }
+
+        function closePopup() {
+            $("#overlay").hide();
+            $("#popup").hide();
+        }
+
+        $("#starRating").click(function() {
+            openPopup();
+        });
+
+        $("#overlay").click(function() {
+            closePopup();
+        });
+
+        function submitRating() {
+            const rate = parseFloat($("#ratingInput").val());
+            if (!isNaN(rate) && rate >= 0 && rate <= 5) { //!isNaN 숫자인지 아닌지 검사
+                updateRating(rate);
+                closePopup();
+            } else {
+                alert("유효한 평점을 입력하세요 (0-5 사이).");
+            }
+        }
+
+        const commentWrite = () => {
+            const writer = document.getElementById("ywriter").value;
+            const contents = document.getElementById("ycontent").value;
+            console.log("작성자 :", writer);
+            console.log("내용 :", contents);
+
+            $.ajax({
+                type: "post",
+                url: "",
+                data: {
+                    "ywriter": writer,
+                    "ycontent": contents,
+                },
+                success: function(res) {
+                    console.log("요청 성공", res);
+                },
+                error: function(err) {
+                    console.log("요청 실패", err);
+                }
+            });
+        }
+    </script>
 </body>
 </html>

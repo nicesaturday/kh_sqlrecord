@@ -1,83 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>문서</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
-        * {margin: 0; padding: 0;
-            box-sizing: border-box;
-        }
-        
-        .score-wrapper {border: 1px solid #333;
-            font-size: 50px;
-        }
-        .score {position: relative;
-            display: inline-flex; 
-            
-            border: 1px solid red;
-        }
-        .foreground {
-            overflow: hidden;
-            width: 60%;
-        }
-        .background {position: absolute;}
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .score-wrapper { border: 1px solid #333; font-size: 50px; position: relative; }
+        .score { position: relative; display: inline-flex; border: 1px solid red; cursor: pointer; }
+        .foreground { overflow: hidden; width: 60%; }
+        .background { position: absolute; }
+        .popup { display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 20px; border: 1px solid #333; background: #fff; }
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); }
     </style>
 </head>
 <body>
     <div class="score-wrapper">
-        <div class="score">
+        <div class="score" id="starRating">
             <p class="foreground">★★★★★</p>
             <p class="background">☆☆☆☆☆</p>
         </div>
-        <span class="point">4.3</span>
+        <span class="point"></span>
     </div>
 
     <div class="comment-write">
         <input class="ywriter" id="ywriter" type="text" placeholder="작성자">
         <input class="ywriter" id="ycontent" type="text" placeholder="내용">
-        <button class="wrbtn" onclick="commentWrite()">댓글작성</button>
+        <button class="wrbtn" onclick="commentWrite()">댓글 작성</button>
     </div>
 
-    <div class="comment-list">
-
+    <div class="comment-list"></div>
+    
+    <div class="overlay" id="overlay"><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 -960 960 960" width="12px" fill="#EA3323"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div> 
+    <div class="popup" id="popup">
+        <p>평점을 입력하세요:</p>
+        <input type="number" id="ratingInput" min="0" max="5" step="0.1">
+        <button onclick="submitRating()">제출</button>
     </div>
 
     <script>
-        $(function(){
-            const rate = "2.5";
+        function updateRating(rate) {
             const max = 5;
-            const percent = rate/max *100;
-            $(".score-wrapper").find(".foreground").css("width",percent+"%");
+            const percent = (rate / max) * 100;
+            $(".score-wrapper").find(".foreground").css("width", percent + "%");
             $(".score-wrapper").find(".point").text(rate);
+        }
+
+        //jquery를 이용한 show/hide 
+        function openPopup() {
+            $("#overlay").show();
+            $("#popup").show();
+        }
+
+        function closePopup() {
+            $("#overlay").hide();
+            $("#popup").hide();
+        }
+
+        $("#starRating").click(function() {
+            openPopup();
         });
+
+        $("#overlay").click(function() {
+            closePopup();
+        });
+
+        function submitRating() {
+            const rate = parseFloat($("#ratingInput").val());
+            if (!isNaN(rate) && rate >= 0 && rate <= 5) { //!isNaN 숫자인지 아닌지 검사
+                updateRating(rate);
+                closePopup();
+            } else {
+                alert("유효한 평점을 입력하세요 (0-5 사이).");
+            }
+        }
 
         const commentWrite = () => {
             const writer = document.getElementById("ywriter").value;
             const contents = document.getElementById("ycontent").value;
-            console.log("작성자 :" ,writer);
-            console.log("내용 :" ,contents);
+            console.log("작성자 :", writer);
+            console.log("내용 :", contents);
 
-            // 게시글 번호 필요
             $.ajax({
-                type : "post",
-                url :"" ,
-                data : {
-                    "ywriter" : writer,
-                    "ycontent" : contents,
-
+                type: "post",
+                url: "",
+                data: {
+                    "ywriter": writer,
+                    "ycontent": contents,
                 },
-                success : function(res) {
-                    consol.log("요청성공" , res);
+                success: function(res) {
+                    console.log("요청 성공", res);
                 },
-                error : function(err) {
-                    consol.log("요청실패", err);
+                error: function(err) {
+                    console.log("요청 실패", err);
                 }
             });
         }
-
     </script>
 </body>
 </html>

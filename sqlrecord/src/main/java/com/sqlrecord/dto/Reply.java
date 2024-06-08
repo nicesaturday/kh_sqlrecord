@@ -17,4 +17,5 @@ public class Reply {
 	private String resdate;
 	private float star;
 	
+	
 }
