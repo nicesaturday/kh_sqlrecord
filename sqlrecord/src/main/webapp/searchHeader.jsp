@@ -9,25 +9,25 @@
       	  </a>
       	</div>
       	<div class="section_serch_item_box">
-      	  <p class="section_serch_item_textBox">RECORD&nbspPLAYERS</p>
+      	  <p class="section_serch_item_textBox"><a>TURNTABLES</a></p>
       	</div>
       	<div class="section_serch_item_box">
-      	  <p class="section_serch_item_textBox">SPEAKERS</p>
+      	  <p class="section_serch_item_textBox"><a>SPEAKERS</a></p>
       	</div>
       	<div class="section_serch_item_box">
-      	  <p class="section_serch_item_textBox">RADIOS</p>
+      	  <p class="section_serch_item_textBox"><a>RADIOS</a></p>
       	</div>
       	<div class="section_serch_item_box">
-      	  <p class="section_serch_item_textBox">CD&nbspPLAYERS</p>
+      	  <p class="section_serch_item_textBox"><a>CD&nbspPLAYERS</a></p>
       	</div>
       	<div class="section_serch_item_box" style="width: 200px;">
-      	  <p class="section_serch_item_textBox">CASSETTE&nbspPLAYERS</p>
+      	  <p class="section_serch_item_textBox"><a>CASSETTE&nbspPLAYERS</a></p>
       	</div>
       	<div class="section_serch_item_box">
-      	  <p class="section_serch_item_textBox">MEDIA&nbspSTANDS</p>
+      	  <p class="section_serch_item_textBox"><a>MEDIA&nbspSTANDS</a></p>
       	</div>
       	<div class="section_serch_item_box">
-      	  <p class="section_serch_item_textBox">VINYL</p>
+      	  <p class="section_serch_item_textBox"><a>VINYL</a></p>
       	</div>
       </div>
       

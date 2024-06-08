@@ -4,13 +4,13 @@
 <html>
 <head>
 <%@ include file="/head.jsp" %>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <!-- Slick 불러오기 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Product One</title>
 <style>
   body {
@@ -22,6 +22,7 @@
     padding-bottom: 30px;
     display: flex;
     justify-content: center;
+    padding-left: 10px;
   }
   #breadCrumb_items {
     width: 1500px;
@@ -135,24 +136,90 @@
  
   
 
-  .star-rating {
-  	display: flex;
-  }
-  .star {
-  	appearance: none;
-  	padding: 1px;
-  }
+  
 
-  .star::after {
-  	content: '☆';
-  	color: hsl(60, 80%, 45%);
-  	font-size: 20px;
+  
+.rate { display: inline-block;border: 0;margin-right: 15px;}
+.rate > input {display: none;}
+.rate > label {float: right;color: #ddd;  display: inline-block; }
+.rate > label:before {display: inline-block;font-size: 3rem;padding: .3rem .2rem;margin: 0;cursor: pointer;font-family: FontAwesome;content: "\f005 ";}
+.rate .half:before {content: "\f089 "; position: absolute;padding-right: 0;}
+.rate input:checked ~ label, 
+.rate label:hover,.rate label:hover ~ label { color: #161616; } 
+.rate input:checked + .rate label:hover,
+.rate input input:checked ~ label:hover,
+.rate input:checked ~ .rate label:hover ~ label,  
+.rate label:hover ~ input:checked ~ label { color: #161616;  } 
+  
+.star-rating { display: inline-block; border: 0; margin-right: 15px; }
+.star-rating > input { display: none; }
+.star-rating > label { float: right; color: #ddd; position: relative; }
+.star-rating > label:before { content: "\2605"; /* Unicode star character */ display: inline-block; font-size: 1rem; padding: .3rem .2rem; margin: 0; cursor: pointer; }
+.star-rating .half:before { content: "\2605"; /* Unicode half-star character */ position: absolute; overflow: hidden; width: 50%; padding-right: 0; }
+.star-rating input:checked ~ label, .star-rating label:hover, .star-rating label:hover ~ label { color: #161616; }
+
+.star-rating input:checked ~ label,
+.star-rating input:checked + .star-rating label:hover,
+.star-rating input:checked ~ label:hover,
+.star-rating input:checked ~ .star-rating label:hover ~ label,
+.star-rating label:hover ~ input:checked ~ label,
+.star-rating input , .star-rating label{
+  pointer-events: none;
+}
+
+  
+  
+  
+  
+  
+  
+  .section_review_input div input {
+    	
+    	width: 100%;
+    	position: relative;
+    	font-size: 24px;
+    	outline: none;
+    	border: none;
+    	flex-grow: 1;
   }
+  
+  .section_review_input div input:focus {
+  	outline: none; /* 기본 포커스 스타일 제거 */
+  	border-bottom: 5px solid #161616; /* 포커스 스타일 */
+   }
+  
+
+  
+  
   
   #point_graph div p {
     font-weight: 700;
     color: black;
   }
+  
+  
+  
+  
+   .hidden {
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .visible {
+      opacity: 1;
+    }
+  
+  .number-container {
+  	display: inline-block;
+  	width: 20px; /* 적절한 너비를 설정하세요 */
+  	text-align: right; /* 숫자를 오른쪽 정렬 */
+   }
+   .graph-bar {
+      position: relative;
+      width: 0;
+      height: 100%;
+      background-color: #161616;
+      transition: width 2s;
+    }
   
   
 </style>
@@ -172,7 +239,7 @@
 </div>
 
 
-<div id="section_main">
+<div id="section_main" class="hidden">
   <div id="section_main_box">
     <div class="sld-wrp">
 	 <div class="slider-for">
@@ -214,13 +281,18 @@
       <h2>￦가격</h2>
       <br>
       <div style="display: flex; gap: 10px;">
-       <div class="star-rating">
-    	 <input type="radio" class="star" value="1">
-    	 <input type="radio" class="star" value="2">
-    	 <input type="radio" class="star" value="3">
-    	 <input type="radio" class="star" value="4">
-    	 <input type="radio" class="star" value="5">
-  		</div>
+        <fieldset class="star-rating">
+		  <input type="radio" id="star5" name="rating_readonly_main" value="5"><label for="star5" title="5 stars"></label>
+		  <input type="radio" id="star4.5" name="rating_readonly_main" value="4.5"><label class="half" for="star4.5" title="4.5 stars"></label>
+		  <input type="radio" id="star4" name="rating_readonly_main" value="4"><label for="star4" title="4 stars"></label>
+		  <input type="radio" id="star3.5" name="rating_readonly_main" value="3.5"><label class="half" for="star3.5" title="3.5 stars"></label>
+		  <input type="radio" id="star3" name="rating_readonly_main" value="3"><label for="star3" title="3 stars"></label>
+		  <input type="radio" id="star2.5" name="rating_readonly_main" value="2.5"><label class="half" for="star2.5" title="2.5 stars"></label>
+		  <input type="radio" id="star2" name="rating_readonly_main" value="2"><label for="star2" title="2 stars"></label>
+		  <input type="radio" id="star1.5" name="rating_readonly_main" value="1.5"><label class="half" for="star1.5" title="1.5 stars"></label>
+		  <input type="radio" id="star1" name="rating_readonly_main" value="1"><label for="star1" title="1 star"></label>
+		  <input type="radio" id="star0.5" name="rating_readonly_main" value="0.5"><label class="half" for="star0.5" title="0.5 star"></label>
+		</fieldset>
   		<p>&nbsp;평균참여인원</p>
       </div>
       <br>
@@ -241,7 +313,7 @@
 
 </div>
 
-<div id="section_btn">
+<div id="section_btn" class="hidden">
   <div style="background-color: #383637; text-align: center; color: white; line-height: 50px; height: 50px;">상품 상세</div>
   <div style="background-color: #DEDEDE; text-align: center; color: black; line-height: 50px; height: 50px;">리뷰</div>
 </div>
@@ -256,62 +328,147 @@
 
 <br><br><br>
 
-<div id="section_detail" style="width: 100%; display: flex; justify-content: center;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 리뷰 코드 시작 -->
+<div id="section_detail" class="hidden"  style="width: 100%; display: flex; justify-content: center;">
   <div style="width: 1500px; height: auto; padding: 200px;">
     자세한 설명
   </div>
 </div>
 
-<div id="section_review" style="width: 100%; display: flex; justify-content: center;">
+
+<!-- 리뷰 박스 안 -->
+<div id="section_review" class="hidden"  style="width: 100%; display: flex; justify-content: center; margin-bottom: 100px;">
   <div style="width: 1300px; height: 1667px; border: solid 2px #D6D6D6;">
     <h2 style="text-align: center; padding: 50px; font-size: 40px;">REVIEW</h2>
     
-    <div style="width: 100%; display: flex; padding: 15px;">
-     <div id="point_graph" style="width: 50%; border-right: 1px solid #D6D6D6;">
-       <div style="display: flex; justify-content: center; padding-bottom: 2px;">
-         <p>5점</p>&nbsp;<div style="width: 250px; border: 2px solid #D6D6D6; border-radius: 10px; overflow: hidden">
-           <div style="position: relative; width: 85%; height: 100%; background-color: #D6D6D6; "></div>
-         </div>&nbsp;<p>17</p>
-       </div>
-       <div style="display: flex; justify-content: center; padding-bottom: 2px;">
-         <p>4점</p>&nbsp;<div style="width: 250px; border: 2px solid #D6D6D6; border-radius: 10px; overflow: hidden">
-           <div style="position: relative; width: 15%; height: 100%; background-color: #D6D6D6; "></div>
-         </div>&nbsp;<p>17</p>
-       </div>
-       <div style="display: flex; justify-content: center; padding-bottom: 2px;">
-         <p>3점</p>&nbsp;<div style="width: 250px; border: 2px solid #D6D6D6; border-radius: 10px; overflow: hidden">
-           <div style="position: relative; width: 15%; height: 100%; background-color: #D6D6D6; "></div>
-         </div>&nbsp;<p>0</p>
-       </div>
-       <div style="display: flex; justify-content: center; padding-bottom: 2px;">
-         <p>2점</p>&nbsp;<div style="width: 250px; border: 2px solid #D6D6D6; border-radius: 10px; overflow: hidden">
-           <div style="position: relative; width: 15%; height: 100%; background-color: #D6D6D6; "></div>
-         </div>&nbsp;<p>0</p>
-       </div>
-       <div style="display: flex; justify-content: center; padding-bottom: 2px;">
-         <p>1점</p>&nbsp;<div style="width: 250px; border: 2px solid #D6D6D6; border-radius: 10px; overflow: hidden">
-           <div style="position: relative; width: 15%; height: 100%; background-color: #D6D6D6; "></div>
-         </div>&nbsp;<p>0</p>
-       </div>
-      </div>
+    <div style="width: 100%; display: flex; margin-bottom: 50px;">
+    
+    
+      <div id="point_graph" style="width: 50%; border-right: 1px solid #D6D6D6;">
+    <div style="display: flex; justify-content: center; padding-bottom: 2px;">
+      <p>5점</p>&nbsp;
+      <div style="width: 250px; border: 2px solid #D6D6D6; border-radius: 10px; overflow: hidden;">
+        <div class="graph-bar" data-width="85%"></div>
+      </div>&nbsp;
+      <div class="number-container"><p>17</p></div>
+    </div>
+    <div style="display: flex; justify-content: center; padding-bottom: 2px;">
+      <p>4점</p>&nbsp;
+      <div style="width: 250px; border: 2px solid #D6D6D6; border-radius: 10px; overflow: hidden;">
+        <div class="graph-bar" data-width="15%"></div>
+      </div>&nbsp;
+      <div class="number-container"><p>3</p></div>
+    </div>
+    <div style="display: flex; justify-content: center; padding-bottom: 2px;">
+      <p>3점</p>&nbsp;
+      <div style="width: 250px; border: 2px solid #D6D6D6; border-radius: 10px; overflow: hidden;">
+        <div class="graph-bar" data-width="0%"></div>
+      </div>&nbsp;
+      <div class="number-container"><p>0</p></div>
+    </div>
+    <div style="display: flex; justify-content: center; padding-bottom: 2px;">
+      <p>2점</p>&nbsp;
+      <div style="width: 250px; border: 2px solid #D6D6D6; border-radius: 10px; overflow: hidden;">
+        <div class="graph-bar" data-width="0%"></div>
+      </div>&nbsp;
+      <div class="number-container"><p>0</p></div>
+    </div>
+    <div style="display: flex; justify-content: center; padding-bottom: 2px;">
+      <p>1점</p>&nbsp;
+      <div style="width: 250px; border: 2px solid #D6D6D6; border-radius: 10px; overflow: hidden;">
+        <div class="graph-bar" data-width="0%"></div>
+      </div>&nbsp;
+      <div class="number-container"><p>0</p></div>
+    </div>
+  </div>
+
       <div id="point_mark" style="width: 50%; border-left: 1px solid #D6D6D6;">
         <h5 style="text-align: center; padding-right: 1em; ">전체 평점</h5>
         <br>
         <div style="display: flex; justify-content: center; gap: 15px;">
-          <h3 style="font-size: 32px;">점수</h3>
+          <h3 style="font-size: 48px;">점수</h3>
           <div>
-           <div class="star-rating">
-    	 	<input type="radio" class="star" disabled="disabled" value="1">
-    	 	<input type="radio" class="star" disabled="disabled" value="2">
-    	 	<input type="radio" class="star" disabled="disabled" value="3">
-    	 	<input type="radio" class="star" disabled="disabled" value="4">
-    	 	<input type="radio" class="star" disabled="disabled" value="5">
-  		   </div>
+            <fieldset class="star-rating">
+  <input type="radio" id="star5" name="rating_readonly" value="5"><label for="star5" title="5 stars"></label>
+  <input type="radio" id="star4.5" name="rating_readonly" value="4.5"><label class="half" for="star4.5" title="4.5 stars"></label>
+  <input type="radio" id="star4" name="rating_readonly" value="4"><label for="star4" title="4 stars"></label>
+  <input type="radio" id="star3.5" name="rating_readonly" value="3.5"><label class="half" for="star3.5" title="3.5 stars"></label>
+  <input type="radio" id="star3" name="rating_readonly" value="3"><label for="star3" title="3 stars"></label>
+  <input type="radio" id="star2.5" name="rating_readonly" value="2.5"><label class="half" for="star2.5" title="2.5 stars"></label>
+  <input type="radio" id="star2" name="rating_readonly" value="2"><label for="star2" title="2 stars"></label>
+  <input type="radio" id="star1.5" name="rating_readonly" value="1.5"><label class="half" for="star1.5" title="1.5 stars"></label>
+  <input type="radio" id="star1" name="rating_readonly" value="1"><label for="star1" title="1 star"></label>
+  <input type="radio" id="star0.5" name="rating_readonly" value="0.5"><label class="half" for="star0.5" title="0.5 star"></label>
+</fieldset>
+           
   		   <p style="font-weight: 800; font-size: 18px;">(리뷰개수)개 리뷰</p>
   		  </div>
         </div>
       </div>
     </div>
+    
+    <div style="width: 100%; display: flex; justify-content: center;">
+      <h2 style="width: 80%; display: block; font-weight: 800; padding-left: 10px;">리뷰 작성하기</h2>
+    </div>
+    <br>
+    
+    <!-- 리뷰 form -->
+    <form>
+    <div style="width: 100%; display: flex; justify-content: center;">
+      <div style="width: 80%;">
+							<fieldset class="rate">
+                                <input type="radio" id="rating10" name="rating" value="5"><label for="rating10" title="5점"></label>
+                                <input type="radio" id="rating9" name="rating" value="4.5"><label class="half" for="rating9" title="4.5점"></label>
+                                <input type="radio" id="rating8" name="rating" value="4"><label for="rating8" title="4점"></label>
+                                <input type="radio" id="rating7" name="rating" value="3.5"><label class="half" for="rating7" title="3.5점"></label>
+                                <input type="radio" id="rating6" name="rating" value="3"><label for="rating6" title="3점"></label>
+                                <input type="radio" id="rating5" name="rating" value="2.5"><label class="half" for="rating5" title="2.5점"></label>
+                                <input type="radio" id="rating4" name="rating" value="2"><label for="rating4" title="2점"></label>
+                                <input type="radio" id="rating3" name="rating" value="1.5"><label class="half" for="rating3" title="1.5점"></label>
+                                <input type="radio" id="rating2" name="rating" value="1"><label for="rating2" title="1점"></label>
+                                <input type="radio" id="rating1" name="rating" value="0.5"><label class="half" for="rating1" title="0.5점"></label>
+                            </fieldset>
+    
+        <span style="font-weight: 800; font-size: 40px;">별점</span>
+      </div>
+    </div>
+    <br>
+    <div class="section_review_input" style="width: 100%; display: flex; justify-content: center; margin-bottom: 20px;">
+     <div style="width: 80%;">
+      <input type="text" name="content" placeholder="리뷰 작성 ..." style="border-bottom: 3px solid #EDEDED;">
+      <div id="review_input_button" style="display: none; width: 80px; height: 14px; text-align:center; margin-top: 25px; color: white; background-color: #D6D6D6; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: 700; padding: 1.2rem;">글등록</div>
+     </div> 
+    </div>
+    </form>
+    
+    
+    
+    <div class="section_reviews" style="width: 100%; display: flex; justify-content: center; margin: 100px 0;">
+      <div style="width: 80%;">
+         !!!!!!!!!!!!!!!!!!리뷰 작성시작!!!!!!!!!!!!!!!!
+      </div>
+    </div>
+    
+    
+    
+    
+    
+    
+    
   </div>
 </div>
 
@@ -332,12 +489,138 @@
 	  centerMode: true,
 	  focusOnSelect: true
 	});
+	//슬라이드 opacitiy 설정 (선택시에는 선명하게)
 	document.querySelectorAll('.slide-btn').forEach((btn, index) => {
 		  btn.addEventListener('click', () => {
 		    document.querySelector('.slide-btn.active').classList.remove('active');
 		    btn.classList.add('active');
 		  });
 		});
+	
+
+	
+	document.addEventListener("DOMContentLoaded", function() {
+		  const observer = new IntersectionObserver((entries, observer) => {
+		    entries.forEach(entry => {
+		      if (entry.isIntersecting) {
+		        entry.target.classList.add('visible');
+		        observer.unobserve(entry.target);  // Once the element is visible, stop observing it
+		      }
+		    });
+		  }, { threshold: 0.1 });
+
+		  const sections = document.querySelectorAll('.hidden');
+		  sections.forEach(section => observer.observe(section));
+
+		  const graphObserver = new IntersectionObserver((entries, observer) => {
+		    entries.forEach(entry => {
+		      if (entry.isIntersecting) {
+		        const bars = entry.target.querySelectorAll('.graph-bar');
+		        bars.forEach(bar => {
+		          bar.style.width = bar.getAttribute('data-width');
+		        });
+		        observer.unobserve(entry.target);  // Once the graph is animated, stop observing it
+		      }
+		    });
+		  }, { threshold: 0.1 });
+
+		  graphObserver.observe(document.getElementById('point_graph'));
+		});
+	
+	
+	
+	
+	//별점 
+	
+	document.addEventListener('DOMContentLoaded', () => {
+		  const rateInputs = document.querySelectorAll('.rate input');
+		   
+		  let ratingValue = 0; // Default value
+
+		  rateInputs.forEach(input => {
+		    input.addEventListener('change', (event) => {
+		      const ratingValue = event.target.value;
+		      console.log(`Rating selected: ` + ratingValue);
+		    });
+		  });
+		});
+	
+	//판매 상단에 평균 별점 채우기
+	$(document).ready(function() {
+		  // 평균 별점 
+		  const initialRating = 3;
+		  // 별점 input value에 채우기
+		  $('input[name="rating_readonly_main"]').each(function() {
+		        if ($(this).val() === initialRating.toString()) {
+		            $(this).prop('checked', true); // 선택된 별점으로 설정
+		        }
+		    });  
+		});
+	//리뷰 상단에 평균 별점 채우기
+	$(document).ready(function() {
+		  // 평균 별점 
+		  const initialRating = 3;
+		  // 별점 input value에 채우기
+		  $('input[name="rating_readonly"]').each(function() {
+		        if ($(this).val() === initialRating.toString()) {
+		            $(this).prop('checked', true); // 선택된 별점으로 설정
+		        }
+		    });  
+		});
+	
+	
+	
+	//리뷰 작성 input 포커스
+	$(document).ready(function() {
+		  // 포커스가 들어왔을 때
+		  $('.section_review_input div input').focus(function() {
+		    $(this).css('border-bottom', '3px solid #161616');
+		  });
+		  
+		  // 포커스가 나갔을 때 원래 스타일로 되돌리기
+		  $('.section_review_input div input').blur(function() {
+		    $(this).css('border-bottom', '1px solid #ddd'); // 기본 스타일로 되돌리기
+		  });
+		});
+	
+	
+	const contentInput = document.querySelector('.section_review_input div input');
+	const reviewInputButton = document.getElementById('review_input_button');
+
+	// input 요소가 포커스를 얻을 때
+	contentInput.addEventListener('focus', () => {
+	  reviewInputButton.style.display = 'block';
+	});
+
+	// input 요소가 포커스를 잃을 때
+	contentInput.addEventListener('blur', (event) => {
+	  // reviewInputButton을 클릭 중이면 blur 이벤트 무시
+	  setTimeout(() => {
+	    if (!reviewInputButton.contains(document.activeElement)) {
+	      reviewInputButton.style.display = 'none';
+	    }
+	  }, 0);
+	});
+
+	// reviewInputButton을 클릭했을 때
+	reviewInputButton.addEventListener('mousedown', (event) => {
+	  event.preventDefault(); // 이 이벤트가 blur 이벤트를 트리거하지 않도록 함
+	});
+	
+	// input 요소에 글자가 적힐 때마다 실행되는 이벤트 리스너
+	contentInput.addEventListener('input', () => {
+	  // input 요소에 글자가 하나라도 있는지 확인
+	  if (contentInput.value.length > 0) {
+	    reviewInputButton.style.backgroundColor = '#2F4F4F';
+	    reviewInputButton.style.color = 'white';
+	  } else {
+	    // input 요소가 비어있을 때 원래 스타일로 되돌림
+	    reviewInputButton.style.backgroundColor = '#D6D6D6';
+	    reviewInputButton.style.color = 'white';
+	  }
+	});
+
+	
  </script>
  <script src="${hpath }/resources/js/forHeader.js?after1"></script>
 <%@ include file="/footer.jsp" %>
