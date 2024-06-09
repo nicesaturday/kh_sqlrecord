@@ -11,16 +11,19 @@
     font-style: normal;
 }
 @font-face {
-    font-family: 'D2Coding';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/D2Coding.woff') format('woff');
-    font-weight: bold;
+    font-family: 'Gibstone Trial Medium';
     font-style: normal;
+<<<<<<< HEAD
 } */
 @font-face {
     font-family: 'GmarketSansMedium';
     src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+=======
+    font-weight: normal;
+    src: local('Gibstone Trial Medium'), url('GibstoneTrial-Medium.woff') format('woff');
+>>>>>>> d6f0bbc3b580a40a9a60c1808b406a2708bce94a
 }
     @font-face {
     font-family: 'Gibstone Trial Regular';
@@ -58,10 +61,18 @@ body {
     height: 100vh;
     overflow-x: hidden;
     background-color: #EDEDED;
+<<<<<<< HEAD
 
 }
 
 a { text-decoration: none; outline: none} 
+=======
+    font-family: 'Gibstone Trial Medium', sans-serif;
+}
+
+
+a {color: #fff; text-decoration: none; outline: none} 
+>>>>>>> d6f0bbc3b580a40a9a60c1808b406a2708bce94a
 a:hover, a:active {text-decoration: none; color:#fff; }
 
 
@@ -83,7 +94,7 @@ ul , li {
 
 #main_footer {
 	width: 100%;
-	height: 400px;
+	height: 300px;
 	background-color: #383637;
 	position: relative;
 }

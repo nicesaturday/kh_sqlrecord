@@ -3,7 +3,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-<%@ include file="/head.jsp" %>
+<%@ include file="./include/head.jsp" %>
 <!-- 제이쿼리 불러오기 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
  
@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="${hpath }/resources/css/slick/slick.min.css?after1"/>
 <link rel="stylesheet" href="${hpath }/resources/css/slick/slick-theme.min.css?after1"/>
 	<title>Home</title>
+<<<<<<< HEAD
 	<style>
 	
 	  
@@ -77,9 +78,95 @@
 	  .slick-list {
   		margin: 0 -20px; 
   	  }
-	  
-	  
-	  
+=======
+<style>
+ #section_serch {
+ 	display: flex;
+ 	width: 100%;
+ 	height: 100px;
+ 	position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 0; /* Sticky position at the top */
+    justify-content: space-between;
+ 	vertical-align:center;
+ 	padding: 0 20px;
+ 	background-color: #FFF;
+ 	z-index: 9999;
+ }
+ #section_serch_item1, section_serch_item2 {
+ 	width:auto;
+ 	display: flex;
+ 	justify-content:center;
+ }
+#section_serch_item1 {
+	margin-left:80px;
+	display:flex;
+	justify-content: center;
+    align-items: center;
+}
+#section_serch_item2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.section_serch_item_box,
+#section_serch_item2_inputBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 15px;
+}
+.navbar-brand1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.logo-wrap {
+    height: 100%;
+    width: auto;
+	margin: 0 auto;
+	justify-content: center;
+	align-items: center;
+}
+.section_serch_item_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: 100%;
+    margin: 0 15px;
+}
+.section_serch_item_textBox a {
+	color:black;
+	font-weight:700;
+	font-size:20px;
+}
+.basketlogo {
+    width: auto;
+    height: 35px;
+    object-fit: contain;
+}
+
+/* 검색 */
+#searchInput {
+    height: 50px;
+    width: 300px;
+    border-radius: 20px;
+    border: 2px solid #383637;
+    background-color:white;
+    text-indent: 15px;
+    margin:0 80 0 10px;
+}
+
+
+.slick-slide {
+  margin: 0 20px; 
+}
+.slick-list {
+  margin: 0 -20px; 
+}
+>>>>>>> d6f0bbc3b580a40a9a60c1808b406a2708bce94a
 	  
 	  #section_video {
 	    display: flex;
@@ -142,9 +229,6 @@
 	    width: 100%;
 	  }
 	  
-	  
-	  
-	  
 #slick-prev, #slick-next {
     background-color: black; /* 버튼 배경색 */
     border: none;
@@ -193,17 +277,16 @@
     height: 250px;
   }
 }
+
 	  
-	  
-	  
-	</style>
+</style>
 </head>
 <body>
-<%@ include file="/header.jsp" %>
+<%@ include file="./include/header.jsp" %>
 <div id="main_content">
   <div id="section_serch">
-    <div id="section_serch_box">
       <div id="section_serch_item1">
+<<<<<<< HEAD
       	<div id="section_serch_item_logo">
       	  <img src="${hpath }/resources/imgs/homepageLogo/logo.png">
       	</div>
@@ -221,17 +304,68 @@
       	</div>
       	<div class="section_serch_item_box">
       	  <p class="section_serch_item_textBox">CASSETTE&nbspPLAYERS</p>
+=======
+       	<div class="navbar-brand1">
+		    <a class="navbar-item" href="${path1 }" class="logo-wrap">
+		        <img src="${path1}/resources/images/logo2transp.png" alt="LOGO" class="logo">
+		    </a>
+		</div>
+      	<div class="section_serch_item_box">
+      	  <p class="section_serch_item_textBox"><a href="${hpath }">RECORD PLAYERS</a></p>
+      	</div>
+      	<div class="section_serch_item_box">
+      	  <p class="section_serch_item_textBox"><a href="">SPEAKERS</a></p>
+      	</div>
+      	<div class="section_serch_item_box">
+      	  <p class="section_serch_item_textBox"><a href="">RADIOS</a></p>
+      	</div>
+      	<div class="section_serch_item_box">
+      	  <p class="section_serch_item_textBox"><a href="">CD PLAYERS</a></p>
+      	</div>
+      	<div class="section_serch_item_box">
+      	  <p class="section_serch_item_textBox"><a href="">CASSETTE PLAYERS</a></p>
+      	</div>
+      	<div class="section_serch_item_box">
+      	  <p class="section_serch_item_textBox"><a href="">MEDIA STANDS</a></p>
+      	</div>
+      	<div class="section_serch_item_box">
+      	  <p class="section_serch_item_textBox"><a href="">VINYLS</a></p>
+>>>>>>> d6f0bbc3b580a40a9a60c1808b406a2708bce94a
       	</div>
       </div>
       
       <div id="section_serch_item2">
+<<<<<<< HEAD
         <div id="section_serch_item1_inputBox">
           <div id="section_serch_item1_inputBox_item">
       	    
+=======
+       	<div class="section_serch_item_box">
+		    <a class="navbar-item" href="${path1 }" class="logo-wrap">
+		        <img src="${path1}/resources/images/shoppingcart.png" alt="basketlogo" class="basketlogo">
+		    </a>
+		</div>
+		<!-- 검색기능 -->
+      	<div id="section_serch_item2_inputBox">
+      	  <div id="section_serch_item2_inputBox_item">
+      	    <input type="text" id="searchInput" placeholder="스토어 검색">
+>>>>>>> d6f0bbc3b580a40a9a60c1808b406a2708bce94a
       	  </div>
       	</div>
+      	<script>
+      	var searchInput = document.getElementById("searchInput");
+      	searchInput.addEventListener("keypress", function(event) {
+      		if(event.keyCode === 13) {
+      			executeSearch();
+      		}
+      	});
+      	
+      	function executeSearch() {
+      		var searchTerm = searchInput.value;
+      		console.log("Search term: " + searchTerm);
+      	}
+      	</script>
       </div>
-    </div>
   </div>
   
   <div id="section_video">
@@ -440,6 +574,6 @@
           
     </script>
 
-<%@ include file="/footer.jsp" %>
+<%@ include file="./include/footer.jsp" %>
 </body>
 </html>
