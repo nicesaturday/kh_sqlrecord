@@ -105,6 +105,11 @@
         line-height: 24px; /* 줄 높이를 동일하게 설정합니다 */
 	  }
 	  
+	  .section_serch_item_textBox a {
+	    color: black;
+	  }
+	  
+	  
 	  @media (max-width: 1400px) {
             #section_serch_item1 {
             	flex-basis: 0;

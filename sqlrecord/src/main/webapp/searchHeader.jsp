@@ -34,7 +34,9 @@
       <div id="section_serch_item2">
         <div id="section_serch_item1_cartBox">
          <div style="width: 40px; height: 40px; padding: 2rem 0.3rem; cursor: pointer">
-          <img src="${hpath }/resources/imgs/homepageLogo/cart.png">
+          <a href="${hpath }/basket/">
+           <img src="${hpath }/resources/imgs/homepageLogo/cart.png">
+          </a>
          </div>
         </div>
         <div id="section_serch_item1_inputBox">

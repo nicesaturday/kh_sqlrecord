@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+"-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="basket">
+
+
+  <resultMap id="basketRM" type="com.sqlrecord.dto.basket.Basket">
+    <id property="bskno" column="bskno"/>
+    <result property="id" column="id"/>
+    <result property="amount" column="amount" jdbcType="INTEGER"/>
+    <association property="product" javaType="com.sqlrecord.dto.Product">
+        <result property="pno" column="pno"/>
+        <result property="name" column="name"/>
+        <result property="remark1" column="remark1"/>
+        <result property="remark2" column="remark2"/>
+        <result property="price" column="price"/>
+        <result property="img1" column="img1"/>
+        <result property="img2" column="img2"/>
+        <result property="img3" column="img3"/>
+        <result property="img4" column="img4"/>
+        <result property="img5" column="img5"/>
+        <result property="tag" column="tag"/>
+    </association>
+  </resultMap>
+  <select id="getBaskets" resultMap="basketRM">
+	select b.bskno , b.id , b.amount , p.pno, p.name , p.price ,p.img1  from Basket b 
+	join product p on b.pno = p.pno 
+	where id = 'yain123'
+  </select>
+  
+  <delete id="delBasket" parameterType="int">
+    delete table basket where bskno = #{bskno}
+  </delete>
+
+</mapper>

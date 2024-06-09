@@ -6,6 +6,7 @@
 <c:set var="hpath" value="<%= request.getContextPath() %>"/>
 <link rel="stylesheet" href="${hpath }/resources/css/common.css?after8"/>
 <link rel="stylesheet" href="${hpath }/resources/css/header.css?after8"/>
+<link rel="stylesheet" href="${hpath }/resources/css/breadCrumb.css?after8"/>
 <link rel="stylesheet" href="${hpath }/resources/css/searchHeader.css?after2"/>
 <script src="${hpath }/resources/js/jquery-3.2.1.min.js"></script>
 <meta property="og:url" content="">
