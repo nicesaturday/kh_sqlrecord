@@ -12,6 +12,9 @@
 	<select id="replyCount" resultType="int">
 		select count(*) from reply
 	</select>
+	<select id="avgStar" resultType="float">
+		SELECT ROUND(AVG(star), 1) AS avgStar FROM Reply;
+	</select>
 	<insert id="insReply">
 		insert into reply values (#{id}, default, #{pno}, default, #{depth}, #{content}, default,
 		 #{star}, #{img1}, #{img2}, #{img3})
@@ -24,48 +27,49 @@
 	</delete>
 	
 	<!-- 점수대별 갯수랑 페센트 //<![CDATA[...]]> 섹션은 임의의 문자 데이터를 포함할 수 있는 CDATA 섹션 -->
+	<!-- 지금은 pno값 받아와서 출력하는 상태가 아님 -->
 	<select id="getReplyStarAll" resultMap="StarMap">
     <![CDATA[ 
         SELECT
-            '5점 대' AS rating_range,
-            COUNT(*) AS count,
-            ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM reply), 1) AS percentage,
-            1 AS rating_index
-        FROM reply
-        WHERE star = 5.0 
-        UNION
-        SELECT
-            '4점 대' AS rating_range,
-            COUNT(*) AS count,
-            ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM reply), 1) AS percentage,
-            2 AS rating_index
-        FROM reply
-        WHERE star >= 4.0 AND star <= 4.9
-        UNION
-        SELECT
-            '3점 대' AS rating_range,
-            COUNT(*) AS count,
-            ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM reply), 1) AS percentage,
-            3 AS rating_index
-        FROM reply
-        WHERE star >= 3.0 AND star <= 3.9
-        UNION
-        SELECT
-            '2점 대' AS rating_range,
-            COUNT(*) AS count,
-            ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM reply), 1) AS percentage,
-            4 AS rating_index
-        FROM reply
-        WHERE star >= 2.0 AND star <= 2.9
-        UNION
-        SELECT
-            '1점 대' AS rating_range,
-            COUNT(*) AS count,
-            ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM reply), 1) AS percentage,
-            5 AS rating_index
-        FROM reply
-        WHERE star >= 1.0 AND star <= 1.9
-        ORDER BY rating_index
+		    '5점 MAX' AS rating_range,
+		    COUNT(*) AS count,
+		    ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM reply), 1) AS percentage,
+		    1 AS rating_index
+		FROM reply
+		WHERE star = 5.0 
+		UNION
+		SELECT			
+		    '4점 GPA' AS rating_range,
+		    COUNT(*) AS count,
+		    ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM reply), 1) AS percentage,
+		    2 AS rating_index
+		FROM reply
+		WHERE star >= 4.0 AND star <= 4.9
+		UNION
+		SELECT
+		    '3점 GPA' AS rating_range,
+		    COUNT(*) AS count,
+		    ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM reply), 1) AS percentage,
+		    3 AS rating_index
+		FROM reply
+		WHERE star >= 3.0 AND star <= 3.9
+		UNION
+		SELECT
+		    '2점 GPA' AS rating_range,
+		    COUNT(*) AS count,
+		    ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM reply), 1) AS percentage,
+		    4 AS rating_index
+		FROM reply
+		WHERE star >= 2.0 AND star <= 2.9
+		UNION
+		SELECT
+		    '1점 GPA' AS rating_range,
+		    COUNT(*) AS count,
+		    ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM reply), 1) AS percentage,
+		    5 AS rating_index
+		FROM reply
+		WHERE star >= 1.0 AND star <= 1.9
+		ORDER BY rating_index;
     ]]>
 </select>
 

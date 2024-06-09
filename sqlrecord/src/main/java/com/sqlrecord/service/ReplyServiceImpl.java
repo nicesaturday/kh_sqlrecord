@@ -53,6 +53,11 @@ public class ReplyServiceImpl implements ReplyService{
 		return replyDAO.getReplyStarAll();
 	}
 
+	@Override
+	public float avgStar() {
+		return replyDAO.avgStar();
+	}
+
 	
 
 }

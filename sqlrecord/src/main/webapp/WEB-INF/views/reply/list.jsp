@@ -1,10 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions"%>
+<%@ page import="java.util.*, java.util.Map" %>
+<c:set var="path2" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>문서</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         
         body {
@@ -139,10 +145,10 @@
             margin: 5px 0px;
         }
         .score-wrapper { position: relative; }
-        .score { position: relative; display: inline-flex; cursor: pointer; }
-        .foreground { overflow: hidden; width: 0%; color: gold; margin: 0; }
-        .background { position: absolute; color: gold; margin: 0;}
-
+        .score { position: relative; display: inline-flex;}
+        .foreground { overflow: hidden; width: 0%; color: gold; margin: 0; cursor: pointer; }
+        .background { position: absolute; color: gold; margin: 0; cursor: pointer;}
+        
         .sfavg { overflow: hidden; width: 0%; color: gold; margin: 0; }
         .sbavg { position: absolute; color: gold; margin: 0;}
 
@@ -151,54 +157,38 @@
     </style>
 </head>
 <body>
-    <div class="container">
+	<div class="container">
         <div class="review-header" style="text-align: center;">
             <h1>REVIEW</h1>
         </div>
         <div class="overall-rating">
             <div class="individual-rating">
-                <div class="bar-container">
-                    <span>5점 MAX</span>
-                    <div class="bar"><span style="width: 90%;"></span></div>
-                    <span>17</span> 
-                </div>
-                <div class="bar-container">
-                    <span>4점 GPA</span>
-                    <div class="bar"><span style="width: 7%;"></span></div>
-                    <span>3</span>
-                </div>
-                <div class="bar-container">
-                    <span>3점 GPA</span>
-                    <div class="bar"><span style="width: 0%;"></span></div>
-                    <span>0</span>
-                </div>
-                <div class="bar-container">
-                    <span>2점 GPA</span>
-                    <div class="bar"><span style="width: 0%;"></span></div>
-                    <span>0</span>
-                </div>
-                <div class="bar-container">
-                    <span>1점 GPA</span>
-                    <div class="bar"><span style="width: 0%;"></span></div>
-                    <span>0</span>
-                </div>
-            </div>
+		        <c:forEach var="star" items="${starAll}">
+		            <div class="bar-container">
+		                <span>${star.ratingRange}</span>
+		                <div class="bar">
+		                    <span style="width: ${star.percentage}%"></span>
+		                </div>
+		                <span>${star.count}</span>
+		            </div>
+		        </c:forEach>
+		    </div>
         
             <div class="total-rating">
                 <div style="text-align: center;">
                     <p style="margin-bottom: 5px; margin-top: 0px;">전체 평점</p>
-                    <h2 class="pavg" style="font-size: 35px;">3.5</h2>
+                    <h2 class="pavg" style="font-size: 35px;">${avgStar}</h2>
                 </div>
                 <div class="rating-details" style="margin-left: 30px;">
                     <div class="score">
                         <p class="sfavg">★★★★★</p>
                         <p class="sbavg">☆☆☆☆☆</p>
                     </div>
-                    <span>9개 리뷰</span>
+                    <span>${replyCount}개 리뷰</span>
                 </div>
             </div>
         </div>
-        <form id="commentForm" action="" method="post" enctype="multipart/form-data">
+        <form id="commentForm" action="${path2 }/reply/insReply.do" method="post" enctype="multipart/form-data">
             <div class="overlay" id="overlay">
                 <svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 -960 960 960" width="12px" fill="#EA3323">
                     <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
@@ -230,8 +220,7 @@
             <div class="review">
                 <div class="review-title">
                     <div class="stars" >
-                        <span style="text-align: center; height: 30px; margin-right: 5px; color: gold;" >★★★★☆</span>
-                        <span>3.5</span>
+                        <span>★★★★☆</span>
                     </div>
                     <span id="id">작성자 아이디</span>
                     <div class="date">2019.03.30</div>
@@ -327,7 +316,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "댓글_등록_요청_URL",
+                url: "${path2 }/reply/insReply.do",
                 data: formData,
                 contentType: false,
                 processData: false,
@@ -340,7 +329,6 @@
             });
         }
 
-
         document.getElementById("rebtn1").addEventListener("click", function() {
         document.getElementById("fileInput").click();
         });
@@ -349,14 +337,15 @@
             const selectedFile = this.files[0];
             console.log("선택된 파일:", selectedFile);
         });
-
+        
+        
         $(document).ready(function() {
             const avgStar = $(".pavg").text(); 
             const max = 5;
             const percent = (avgStar / max) * 100;
             $(".rating-details").find(".sfavg").css("width", percent + "%");
         });
-
+        
     </script>
 </body>
 </html>

@@ -50,4 +50,9 @@ public class ReplyDAOImpl implements ReplyDAO{
 		return sqlSession.selectList("reply.getReplyStarAll");
 	}
 
+	@Override
+	public float avgStar() {
+		return sqlSession.selectOne("reply.avgStar");
+	}
+
 }

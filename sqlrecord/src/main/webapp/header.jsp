@@ -9,6 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="${path1}/resources/css/common.css">
+    <link rel="stylesheet" href="${path1}/resources/css/header.css">
 <style>
 a {
   color: #fff;
@@ -104,7 +105,7 @@ a {
                         </a>
                     </div>
                     <div class="navbar-item">
-                        <a href="${path1}/member/term.do">
+                        <a href="${path1}/reply/getReplyStarAll.do">
                             회원가입
                         </a>
                     </div>

@@ -108,6 +108,7 @@ public class MemberController {
 		if(loginSuccess) {
 			session.setAttribute("cus", cus);
 			session.setAttribute("sid", id);
+			session.setAttribute("spw", pw);
 			session.setAttribute("sname", cus.getName());
 			//model.addAttribute("msg", "로그인 성공");
 			return "redirect:/";
