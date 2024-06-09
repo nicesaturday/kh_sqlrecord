@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="${path1}/resources/css/common.css">
 <style>
-a {
+.navbar-item a {
   color: #fff;
 }
 

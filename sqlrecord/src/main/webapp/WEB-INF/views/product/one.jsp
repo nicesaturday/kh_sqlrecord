@@ -13,35 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Product One</title>
 <style>
-  body {
-    background-color: white;
-  }
-  
-  #breadCrumb {
-    width: 100%;
-    padding-bottom: 30px;
-    display: flex;
-    justify-content: center;
-    padding-left: 10px;
-  }
-  #breadCrumb_items {
-    width: 1500px;
-    display: flex;
-    gap: 15px;
-    font-size: 18px;
-    position: relative;
-    padding: 20px 0;
-  }
-  #breadCrumb_items p a {
-    color: #929292;
-  }
-  #breadCrumb_items p a:hover {
-    color: black;
-  }
-  
-  
-  
-  
+
   
   #section_main {
     width: 100%;
