@@ -125,6 +125,8 @@ function onClickCount(f) {
 	console.log(f);
 	
 }
+
+function 
   
 </script>
 <script src="${hpath }/resources/js/forHeader.js?after1"></script>
