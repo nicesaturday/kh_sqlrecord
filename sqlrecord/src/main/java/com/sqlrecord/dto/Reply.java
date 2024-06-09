@@ -16,6 +16,8 @@ public class Reply {
 	private String content;
 	private String resdate;
 	private float star;
-	
+	private String img1;
+	private String img2;
+	private String img3;
 	
 }
