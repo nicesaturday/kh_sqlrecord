@@ -10,6 +10,11 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="${path1}/resources/css/common.css">
 <style>
+a {
+  color: #fff;
+}
+
+
 #main_header1 {
     width: 100%;
     height: 50px;

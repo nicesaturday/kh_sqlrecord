@@ -1,17 +1,38 @@
 package com.sqlrecord.ctrl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.sqlrecord.service.MemberService;
+import com.sqlrecord.service.ProductService;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 
-	@GetMapping("/admin_main")
-	public void main(Model model) {
-		System.out.println("관리자 메인 페이지로 이동");
-		model.addAttribute("",);
+	@Autowired
+	private ProductService productService;
+	
+	@Autowired
+	private MemberService memberService;
+	
+	//관리자페이지 호출
+	@GetMapping("/adminPage")
+	public String adminpage() {
+	    return "admin/adminPage"; 
 	}
+	
+	//★★★상품★★★//
+	//상품 수 카운트(리스트 출력)
+    @GetMapping("/product")
+    public String getProductList(@RequestParam("tag") String tag, Model model) {
+        int productCount = productService.getProductCount();
+        model.addAttribute("productCount", productCount);
+        model.addAttribute("tag", tag);
+        return "product";
+    }
 }

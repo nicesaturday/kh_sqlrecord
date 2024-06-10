@@ -2,8 +2,12 @@
     pageEncoding="UTF-8"%>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="${path1}/resources/css/common.css">
+    <link rel="stylesheet" href="${hpath}/resources/css/common.css">
 <style>
+a {
+  color: #fff;
+}
+
 .main_footer {
 	display:flex;
 	justify-content: space-between;
@@ -71,7 +75,7 @@
 	<div class="ft_left">
 		<div class="navbar-brand">
 		    <a class="navbar-item" href="${path1 }" class="logo-wrap">
-		        <img src="${path1}/resources/images/logo2transp2.png" alt="LOGO" class="logo">
+		        <img src="${path1}/resources/imgs/footer/logo2transp2.png" alt="LOGO" class="logo">
 		    </a>
 		</div>
 		<div class="copyrightTerms">
@@ -92,22 +96,22 @@
 	<div class="ft_right">
 		<div class="sns_btn">
 			<a href="${path1 }" id="instagram">
-		        <img src="${path1}/resources/images/instagram.png" alt="instagram" class="sns">
+		        <img src="${path1}/resources/imgs/footer/instagram.png" alt="instagram" class="sns">
 		    </a>
 		</div>
 		<div class="sns_btn">
 			<a href="${path1 }" id="youtube">
-		        <img src="${path1}/resources/images/youtube.png" alt="youtube" class="sns">
+		        <img src="${path1}/resources/imgs/footer/youtube.png" alt="youtube" class="sns">
 		    </a>
 		</div>
 		<div class="sns_btn">
 			<a href="${path1 }" id="facebook">
-		        <img src="${path1}/resources/images/facebook.png" alt="facebook" class="sns">
+		        <img src="${path1}/resources/imgs/footer/facebook.png" alt="facebook" class="sns">
 		    </a>
 		</div>
 		<div class="sns_btn">
 			<a href="${path1 }" id="X">
-		        <img src="${path1}/resources/images/X.png" alt="X" class="sns">
+		        <img src="${path1}/resources/imgs/footer/X.png" alt="X" class="sns">
 		    </a>
 		</div>
 	</div>
