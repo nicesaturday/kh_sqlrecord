@@ -21,6 +21,13 @@
   grid-auto-rows: auto;
   gap: 10px;
 }
+#section_basket_main_gridBox div input {
+  outline: none;
+  border: none;
+}
+#section_basket_main_gridBox div input[type='checkbox'] {
+  border-radius: 20px; 
+} 
 .item1 {
   display: grid;
   grid-template-columns: 10% 20% 40% 20% 10%;
@@ -48,16 +55,49 @@
 }
 .item1 input {
   width: 50%;
-  height: 50%;
   height: 100%;
   line-height: 100%;
   margin: 0 25%;
 }
 
+.check {
+  display: none;
+}
+input[class="check"] + label {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border: 3px solid #707070;
+  position: relative;
+  right: -35%;
+  top: 30%;
+}
+input[class="check"]:checked + label:after {
+  content: '✔';
+  font-size: 25px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+
+
 #item2 {
   height: 300px;
   background-color: #F4F4F4;
   padding: 30px;
+}
+.submitBtn {
+  background-color: #2F4F4F;
+  color: white;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  font-weight: 800;
+  cursor: pointer;
 }
 </style>
 </head>
@@ -74,6 +114,7 @@
 </div>
 
 <div id="section_basket_main">
+  <form onsubmit="return ">
   <div id="section_basket_main_gridBox">
     <div class="item1">
       <div>선택</div>
@@ -81,38 +122,41 @@
       <div>제품명</div>
       <div>가격</div>
       <div>수량</div>
+      
       <c:forEach var="item" items="${list }" varStatus="status">
-        <input onclick="onClickCount(this)" type="checkbox" name="" id="" value="${item.amount }">
+      
+      <input onclick="onClickCount(this)" checked="checked" class="check" type="checkbox" name="${item.product.pno }" id="check${status.count }" value="${item.product.pno }">
+      <label for="check${status.count }"></label>
       <div style="width: 100%; height: 100%;">
         <img src="${item.product.img1 }" style="width: 50%; height: 80%; padding: 10px; object-fit: cover;">
       </div>
       <div>${ item.product.name }</div>
-      <div class="price">${item.product.price }</div>
-      <div>${ item.amount}</div>
+      <div class="price check${status.count }"><input type="text" readonly="readonly" name="price" value=${item.product.price }></div>
+      <div class="amount check${status.count }"><input type="text" readonly="readonly" name="amount" value=${ item.amount}></div>
+      
       </c:forEach>
       
       
       
-      <input onclick="onClickCount(this)" type="checkbox" name="pno" id="id${status.count }" value="${data.pno }">
-      <div style="width: 100%; height: 100%;">
-        <img src="${hpath }/resources/imgs/homepageLogo/mainSlideimg1.png" style="width: 50%; height: 80%; padding: 10px; object-fit: cover;">
-      </div>
-      <div>radio</div>
-      <div class="price">111,000</div>
-      <div>4</div>
+  
       
       
     </div>
+    
     <div id="item2">
       <h2>합계</h2>
       <br>
       <hr>
       <br>
-      <h4>Total : &nbsp; </h4> 
-      <br><br><br>
-      <div></div>
+      <div style="display: flex; overflow: hidden;">
+        <h4 style="width: 100%; font-size: 30px;">Total :</h4>
+        <input type="text" id="totalPrice" readonly="readonly" style="width: 100%; font-size: 30px; background-color: #F4F4F4" >
+      </div>
+      <br><br><br><br><br>
+      <button class="submitBtn" type="submit" >구매하기</button>
     </div>
     </div>
+    </form>
 </div>
 
 
@@ -121,13 +165,30 @@
 
 </div>
 <script>
+// 체크박스 선택시 모든 상품들의 수량과 가격을 계산함.
+let checkList = document.querySelectorAll(".check");
+let amountList = document.querySelectorAll(".amount input");
+let priceList = document.querySelectorAll(".price input");
+let totalInput = document.querySelector("#totalPrice");
+let totalPrice = 0;
 function onClickCount(f) {
-	console.log(f);
-	
+	totalPrice = 0;
+	for(var i = 0; i < amountList.length; i++) {
+		if(checkList[i].checked) {
+			totalPrice += parseInt(amountList[i].value) * parseInt(priceList[i].value);
+		} 
+	}
+	totalInput.value = totalPrice;
 }
 
-function 
-  
+// 초기 계산 값 호출.
+function getTotalPrice() {
+	let priceList = document.querySelectorAll(".price input");
+	document.querySelectorAll(".amount input").forEach((a,index) => totalPrice += parseInt(a.value) * parseInt(priceList[index].value));
+	console.log(totalPrice);
+	document.querySelector("#totalPrice").value = totalPrice;
+}
+getTotalPrice();
 </script>
 <script src="${hpath }/resources/js/forHeader.js?after1"></script>
 <%@ include file="/footer.jsp" %>

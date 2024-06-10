@@ -10,15 +10,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product {
-	int pno;
-    String name;
-    String remark1;
-    String remark2;
-    int price;
-    String img1;
-    String img2;
-    String img3;
-    String img4;				
-    String img5;					
-    String tag;
+	private int pno;
+    private String name;
+    private String remark1;
+    private String remark2;
+    private int price;
+    private String img1;
+    private String img2;
+    private String img3;
+    private String img4;				
+    private String img5;					
+    private String tag;
 }
