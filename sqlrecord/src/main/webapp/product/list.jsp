@@ -245,6 +245,32 @@ $(document).ready(function() {
         </div>
     </div>
 </div>
+<script>
+$(document).ready(function() {
+    $('input[type="checkbox"]').change(function() {
+        var selectedPrices = $('input[type="checkbox"]:checked').map(function() {
+            return $(this).val();
+        }).get();
+
+        if (selectedPrices.length === 0) {
+            $('.product-item').show(); // 아무 체크박스도 선택되지 않은 경우 모든 상품 보이기
+        } else {
+            $('.product-item').hide(); // 모든 상품 숨기기
+            selectedPrices.forEach(function(selectedPrice) {
+                $('.product-item').each(function() {
+                    var productPrice = parseInt($(this).find('h3:last').text().replace('₩', '').trim());
+                    var priceRange = selectedPrice.split('-');
+                    var minPrice = parseInt(priceRange[0].replace('₩', '').trim());
+                    var maxPrice = parseInt(priceRange[1].replace('₩', '').trim());
+                    if (productPrice >= minPrice && productPrice <= maxPrice) {
+                        $(this).show(); // 선택된 범위 내에 있는 상품 보이기
+                    }
+                });
+            });
+        }
+    });
+});
+</script>
 <%@ include file="/footer.jsp" %>
 </body>
 </html>
