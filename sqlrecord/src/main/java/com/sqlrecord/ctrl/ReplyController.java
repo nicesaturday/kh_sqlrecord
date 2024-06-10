@@ -31,11 +31,11 @@ public class ReplyController {
 	@Autowired
 	private HttpSession session;
 	
-	@RequestMapping("list.do")
-	public String getReplyList(Model model) {
-		model.addAttribute("list", replyService.getReplyList());
-		return "reply/list";
-	}
+//	@RequestMapping("list.do")
+//	public String getReplyList(Model model) {
+//		
+//		return "reply/list";
+//	}
 	
 	@RequestMapping("detail.do")
 	public String getReply(@RequestParam("rno") int rno, Model model) {
@@ -51,31 +51,47 @@ public class ReplyController {
         return "reply/list"; 
     }
 	
-    @PostMapping("insReply.do")
-    public String insReply(@ModelAttribute Reply reply) {
+	@RequestMapping("insReply.do")
+    public String insReply(@ModelAttribute Reply reply, Model model) {
     	String id = (String) session.getAttribute("sid");
     	reply.setId(id);
-        replyService.insReply(reply);
-        return "redirect:/reply/list"; 
+    	replyService.insReply(reply);
+    	//model.addAttribute("rslt", replyService.insReply(reply));
+    	return "redirect:getReplyStarAll.do";
     }
     //Reply 클래스의 필드명과 폼의 입력 필드명(name 속성)이 일치해야함
     
-    @GetMapping("delReply.do")
-	public String delReply(@RequestParam("rno") int rno, Model model) {
+    @PostMapping("delReply.do")
+	public String delReply(@ModelAttribute Reply rno) {
+    	//model.addAttribute("rslt", replyService.delReply(rno));
     	replyService.delReply(rno);
-		return "redirect:list.do";
+    	return "redirect:getReplyStarAll.do";
 	}
     
+    @PostMapping("upReply.do")
+    public String upReply(@ModelAttribute Reply reply) {
+    	replyService.changeReply(reply);
+    	return "redirect:getReplyStarAll.do";
+    }
+    
+    // 한페이지라서 호출을 별도로 못하니까 여기다 다 때려넣어버림 댓글 등록 빼고
     @RequestMapping("getReplyStarAll.do")
     public String getReplyStarAll(Model model) {
-        List<Map<String, Object>> starAll = replyService.getReplyStarAll();
+    	//리뷰 총 갯수 가져오기
+    	int replyCount = replyService.replyCount();
+    	model.addAttribute("replyCount", replyCount);
+
+    	//별점 점수대별 갯수 퍼센트 가져오기
+    	List<Map<String, Object>> starAll = replyService.getReplyStarAll();
         model.addAttribute("starAll", starAll);
         
-        int replyCount = replyService.replyCount();
-        model.addAttribute("replyCount", replyCount);
-
+        
+        //총 리뷰 평점 가져오기
         float avgStar = replyService.avgStar();
         model.addAttribute("avgStar", avgStar);
+        
+        //댓글 목록 가져오기
+        model.addAttribute("list", replyService.getReplyList());
         
         return "reply/list"; // 별점 분포를 표시할 JSP 페이지
     }

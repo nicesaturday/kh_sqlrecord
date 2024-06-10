@@ -31,8 +31,8 @@ public class ReplyDAOImpl implements ReplyDAO{
 	}
 
 	@Override
-	public void insReply(Reply reply) {
-		sqlSession.insert("reply.insReply", reply);
+	public int insReply(Reply reply) {
+		return sqlSession.insert("reply.insReply", reply);
 	}
 
 	@Override
@@ -41,8 +41,8 @@ public class ReplyDAOImpl implements ReplyDAO{
 	}
 
 	@Override
-	public void delReply(int rno) {
-		sqlSession.delete("Reply.delReply", rno);
+	public int delReply(Reply rno) {
+		return sqlSession.delete("reply.delReply", rno);
 	}
 
 	@Override

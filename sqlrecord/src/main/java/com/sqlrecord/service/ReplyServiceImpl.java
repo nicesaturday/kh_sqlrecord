@@ -31,8 +31,8 @@ public class ReplyServiceImpl implements ReplyService{
 	}
 
 	@Override
-	public void insReply(Reply reply) {
-		replyDAO.insReply(reply);
+	public int insReply(Reply reply) {
+		return replyDAO.insReply(reply);
 		
 	}
 
@@ -43,9 +43,8 @@ public class ReplyServiceImpl implements ReplyService{
 	}
 
 	@Override
-	public void delReply(int rno) {
-		replyDAO.delReply(rno);
-		
+	public int delReply(Reply rno) {
+		return replyDAO.delReply(rno);
 	}
 
 	@Override

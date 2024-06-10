@@ -13,10 +13,10 @@
 		select count(*) from reply
 	</select>
 	<select id="avgStar" resultType="float">
-		SELECT ROUND(AVG(star), 1) AS avgStar FROM Reply;
+		select round(AVG(star), 1) AS avgStar from Reply;
 	</select>
 	<insert id="insReply">
-		insert into reply values (#{id}, default, #{pno}, default, #{depth}, #{content}, default,
+		insert into reply values (#{id}, default, #{pno}, #{nno}, #{depth}, #{content}, default,
 		 #{star}, #{img1}, #{img2}, #{img3})
 	</insert>
 	<update id="changeReply">

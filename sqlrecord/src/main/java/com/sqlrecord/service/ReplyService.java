@@ -9,9 +9,9 @@ public interface ReplyService {
 	public List<Reply> getReplyList();
 	public Reply getReply(int rno );
 	public int replyCount();
-	public void insReply(Reply reply);
+	public int insReply(Reply reply);
 	public void changeReply(Reply reply);
-	public void delReply(int rno);
+	public int delReply(Reply rno);
 	public List<Map<String, Object>> getReplyStarAll();
 	public float avgStar();
 }

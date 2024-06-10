@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 수정 창 스타일 */
+.edit-popup {
+    
+    position: fixed; 
+    z-index: 9999; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.edit-popup-content {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; 
+    max-width: 500px; 
+    border-radius: 10px; 
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.edit-popup-content p {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.edit-popup-content input,
+.edit-popup-content textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.edit-popup-content button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.edit-popup-content button:hover {
+    background-color: #45a049;
+}
+
+    </style>
+</head>
+<body>
+    <div id="editPopup" class="edit-popup">
+        <div class="edit-popup-content">
+            <span class="close" onclick="closeEditPopup()">&times;</span>
+            <p>댓글 수정하기</p>
+            <input type="number" id="editRatingInput" name="star" min="0" max="5" step="0.1" placeholder="별점 입력">
+            <textarea id="editContent" name="content" rows="4" placeholder="내용 수정"></textarea>
+            <button type="button" onclick="submitEdit()">수정 완료</button>
+        </div>
+    </div>
+
+    <script>
+        // 수정 창 열기 함수
+	    function openEditPopup(currentContent, currentRating) {
+	    	document.getElementById('editPopup').style.display = 'block';
+	        document.getElementById('editContent').value = currentContent;
+	        document.getElementById('editRatingInput').value = currentRating;
+	    }
+
+	    // 수정 창 닫기 함수
+	    function closeEditPopup() {
+	        document.getElementById('editPopup').style.display = 'none';
+	    }
+
+	    // 수정 제출 함수
+	    function submitEdit() {
+	    	const rno = $(this).closest('.reviews').data('rno');
+	        const updatedContent = document.getElementById('editContent').value;
+	        const updatedRating = document.getElementById('editRatingInput').value;
+
+	        // AJAX 요청 예시
+	        $.ajax({
+	            type: 'POST',
+	            url: '${path2}/reply/upReply.do',
+	            data: {
+	            	rno : rno
+	                content: updatedContent,
+	                star: updatedRating,
+	                // 필요한 다른 데이터 추가
+	            },
+	            success: function(response) {
+	                alert("댓글 수정에 성공했습니다.");
+	                console.log("댓글 수정 성공:", response);
+
+	                // 수정 완료 후 수정 창 닫기
+	                closeEditPopup();
+
+	                // 필요시 화면 업데이트 코드 추가
+	                // 예: reloadComments();
+	            },
+	            error: function(xhr, status, error) {
+	                alert("댓글 수정에 실패했습니다.");
+	                console.error("댓글 수정 실패:", error);
+	            }
+	        });
+	    }
+    </script>
+</body>
+</html>
