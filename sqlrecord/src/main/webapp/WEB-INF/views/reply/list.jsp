@@ -296,7 +296,7 @@
 	            </div>
         </form>
         </c:if>
-        <c:forEach var="reply" items="${list }">
+        <c:forEach var="reply" items="${list }" varStatus="status" begin="0">
 	        <div class="reviews" data-rno="${reply.rno}">
 	            <div class="review">
 	                <div class="review-title">
@@ -314,7 +314,7 @@
 	                	<span id="yrecon">${reply.content}</span>
 	                	<c:if test="${sid == reply.id}">
 		                	<div class="align-right">
-		                        <button class="editButton" onclick="openEditPopup()">수정</button>
+		                        <button class="editButton" onclick="openEditPopup(${reply.rno})">수정</button>
 		                        <button class="deleteButton" style="margin-left: 10px;">삭제</button>
 		                    </div>
 	                    </c:if>
@@ -324,7 +324,7 @@
 					        <p>댓글 수정하기</p>
 					        <input type="number" id="editRatingInput" name="star" min="0" max="5" step="0.1" placeholder="별점 입력">
 					        <textarea id="editContent" name="content" rows="4" placeholder="내용 수정"></textarea>
-					        <button type="button" onclick="submitEdit()">수정 완료</button>
+					        <button type="button" onclick="submitEdit(${reply.rno})">수정 완료</button>
 					    </div>
 					</div>    
 	                </div>
@@ -392,8 +392,9 @@
 	    });
 	    
 	 // 수정 창 열기 함수
-	    function openEditPopup(currentContent, currentRating) {
+	    function openEditPopup(currentContent, currentRating,rno) {
 		    // 수정 창을 열 때 가져온 내용과 별점을 해당 입력 필드에 설정합니다.
+		    currentRno = rno;
 		    document.getElementById('editPopup').style.display = 'block';
 		    document.getElementById('editContent').value = currentContent;
 		    document.getElementById('editRatingInput').value = currentRating;
@@ -401,6 +402,10 @@
 		
 		// 수정 버튼 클릭 시 해당 댓글의 내용과 별점을 가져와 수정 팝업을 열도록 설정
 		$(".editButton").click(function() {
+			// 해당 수정 버튼이 속한 댓글 요소를 찾습니다.
+		    const reviewElement = $(this).closest('.reviews');
+		    // 댓글 요소에서 rno 값을 가져옵니다.
+		    const rno = reviewElement.data('rno');
 		    const currentContent = $(this).closest('.review-content').find('#yrecon').text();
 		    const currentRating = $(this).closest('.review').find('.pavg1').text();
 		    openEditPopup(currentContent, currentRating);
@@ -412,36 +417,43 @@
 	    }
 
 	    // 수정 제출 함수
-	    function submitEdit() {
-	    	const rno = $(this).closest('.reviews').data('rno');
-	        const updatedContent = document.getElementById('editContent').value;
-	        const updatedRating = document.getElementById('editRatingInput').value;
-
-	        // AJAX 요청 예시
-	        $.ajax({
-	            type: 'POST',
-	            url: '${path2}/reply/upReply.do',
-	            data: {
-	            	rno: rno,
-	                content: updatedContent,
-	                star: updatedRating,
-	            },
-	            success: function(response) {
-	                alert("댓글 수정에 성공했습니다.");
-	                console.log("댓글 수정 성공:", response);
-
-	                // 수정 완료 후 수정 창 닫기
-	                closeEditPopup();
-
-	                // 필요시 화면 업데이트 코드 추가
-	                // 예: reloadComments();
-	            },
-	            error: function(xhr, status, error) {
-	                alert("댓글 수정에 실패했습니다.");
-	                console.error("댓글 수정 실패:", error);
-	            }
-	        });
-	    }
+	    function submitEdit(rno,count) {
+		    const updatedContent = document.getElementById('editContent').value;
+		    const updatedRating = document.getElementById('editRatingInput').value;
+			
+		    
+		    // AJAX 요청 예시
+		    $.ajax({
+		        type: 'POST',
+		        url: '${path2}/reply/upReply.do',
+		        data: {
+		            rno: rno,
+		            content: updatedContent,
+		            star: updatedRating,
+		        },
+		        success: function(response) {
+		            alert("댓글 수정에 성공했습니다.");
+		            location.reload();
+		
+		            // 수정 완료 후 수정 창 닫기
+		            closeEditPopup();
+		
+		            // DOM 업데이트
+		            
+		            
+		            
+		            const reviewElement = document.querySelector(`.reviews[data-rno='${rno}']`);
+		            if (reviewElement) {
+		                reviewElement.querySelector('#yrecon').textContent = updatedContent;
+		                reviewElement.querySelector('#yrestar').textContent = updatedRating;
+		            }
+		        },
+		        error: function(xhr, status, error) {
+		            alert("댓글 수정에 실패했습니다.");
+		            console.error("댓글 수정 실패:", error);
+		        }
+		    });
+		}
 	    
 	 
 	    

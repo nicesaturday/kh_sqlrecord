@@ -11,7 +11,7 @@ public interface ReplyDAO {
 	public Reply getReply(int rno );
 	public int replyCount();
 	public int insReply(Reply reply);
-	public void changeReply(Reply reply);
+	public int changeReply(Reply reply);
 	public int delReply(Reply rno);
 	public List<Map<String, Object>> getReplyStarAll();
 	public float avgStar();

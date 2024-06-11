@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,8 @@ import com.sqlrecord.service.ReplyService;
 @Controller
 @RequestMapping("/reply/")
 public class ReplyController {
+	
+	private static final Logger log = LoggerFactory.getLogger(ReplyController.class);
 	
 	@Autowired
 	private ReplyService replyService;
@@ -70,7 +74,10 @@ public class ReplyController {
     
     @PostMapping("upReply.do")
     public String upReply(@ModelAttribute Reply reply) {
+    	String id = (String) session.getAttribute("sid");
+    	reply.setId(id);
     	replyService.changeReply(reply);
+    	log.info("댓글 수정 : {}", reply);
     	return "redirect:getReplyStarAll.do";
     }
     

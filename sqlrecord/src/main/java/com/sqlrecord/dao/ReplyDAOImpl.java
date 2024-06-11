@@ -36,8 +36,8 @@ public class ReplyDAOImpl implements ReplyDAO{
 	}
 
 	@Override
-	public void changeReply(Reply reply) {
-		sqlSession.update("reply.changeReply", reply);
+	public int changeReply(Reply reply) {
+		return sqlSession.update("reply.changeReply", reply);
 	}
 
 	@Override

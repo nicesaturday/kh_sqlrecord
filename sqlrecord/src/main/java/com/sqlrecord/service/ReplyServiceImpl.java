@@ -37,8 +37,8 @@ public class ReplyServiceImpl implements ReplyService{
 	}
 
 	@Override
-	public void changeReply(Reply reply) {
-		replyDAO.changeReply(reply);
+	public int changeReply(Reply reply) {
+		return replyDAO.changeReply(reply);
 		
 	}
 
