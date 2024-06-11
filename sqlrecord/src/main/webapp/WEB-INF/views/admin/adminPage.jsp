@@ -84,7 +84,7 @@
 <div class="mainBox">
     <div class="manageBox">
         <!-- 기본 콘텐츠는 상품 관리 -->
-        기본 - 상품관리리스트
+        jsp 불러올 곳
     </div>
 </div>
 <%@ include file="/footer.jsp" %>

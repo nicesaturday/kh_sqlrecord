@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sqlrecord.service.MemberService;
 import com.sqlrecord.service.ProductService;
+import com.sqlrecord.service.ReplyService;
 
 @Controller
 @RequestMapping("/admin")
@@ -19,6 +20,9 @@ public class AdminController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private ReplyService replyService;
 	
 	//관리자페이지 호출
 	@GetMapping("/adminPage")

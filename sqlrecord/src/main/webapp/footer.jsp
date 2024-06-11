@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="${hpath}/resources/css/common.css">
 <style>
-a {
+.sns_btn a {
   color: #fff;
 }
 
@@ -62,6 +62,9 @@ a {
 	padding: 10px;
 	margin: 10 0px;
 	margin-right:20px;
+}
+.personalTerms_item a {
+    color: white;
 }
 .navbar-brand {
 	max-width:150px;

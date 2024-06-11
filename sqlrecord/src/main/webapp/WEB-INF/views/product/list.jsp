@@ -139,6 +139,15 @@
         border: 1px solid #000;
         border-radius: 0;
     }
+    .dropdown select {
+        width: 70px;
+        height: 30px;
+        border: 1px solid #000;
+        font-size: 15px;
+        text-align: center;
+        padding-left: 0;
+        padding-right: 0;
+    }
 </style>
 <script>
 $(document).ready(function() {
@@ -171,7 +180,7 @@ $(document).ready(function() {
         </nav>
         <!-- 드롭다운(페이징) -->
         <div class="dropdown">
-            <label for="itemsPerPage">한 번에 보기:</label>
+            <label for="itemsPerPage">한 번에 보기&nbsp;:&nbsp;</label>
             <select id="itemsPerPage" name="itemsPerPage">
                 <option value="12">12</option>
                 <option value="18">18</option>
