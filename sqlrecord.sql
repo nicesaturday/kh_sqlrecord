@@ -26,6 +26,23 @@ create table member (
     tag3 varchar(20),				-- 관심태그3
     point int default 0 not null	-- 구매 포인트
 );
+insert into member values(
+    'dusik123',
+    '1234',
+    '김두식',
+    'dusik23@fds34',
+    '010-5456-8789',
+    '종로구',
+    '그레이츠',
+    '042-55',
+    '2010-02-01',
+    default,
+    'radio',
+    '',
+    '',
+    1000
+);
+
 
 
 -- 레코드(product) --
@@ -45,8 +62,35 @@ create table product (
     tag varchar(300)						-- 태그
 );
 
+insert into product values(
+    default,
+    'COMPANIONRADIO',
+    'COMPANIONRADIO',
+    'Relax with your favorite beverage and let the Crosley Companion Radio set the mood. Inspired by traditional cathedral cabinetry, this radio features AM/FM frequencies and Bluetooth to stream digital music through the built-in speakers. The cutout details, route lines, and fabric-covered speaker grill give the Companion its vintage look.,',
+    89000,
+    '/sqlrecord/resources/imgs/product/radio/COMPANIONRADIO.webp',
+    '/sqlrecord/resources/imgs/product/radio/COMPANIONRADIO.webp',
+    '',
+    '',
+    '',
+    'radio'
+);
 
-
+insert into product values(
+    default,
+    'ROCHESTER8-IN-1RECORDPLAYER',
+    'ROCHESTER8-IN-1RECORDPLAYER',
+    'Even the classics can use a refresh now and then. The updated Rochester 8-in-1 Record Player boasts a handsome makeover with dark wood and gold accents, giving it a look that fits seamlessly with classic and modern decor. The turntable system features a vinyl record player, cassette player, AM/FM radio, CD player, and Bluetooth for streaming through the built-in speakers. Want to listen in private? Use the headphone jack to keep things quiet and enjoy your tunes distraction-free. The Rochester covers all your listening needs: a true all-in-one music player that looks as good as it sounds.',
+    89000,
+    '/sqlrecord/resources/imgs/product/radio/ROCHESTER8-IN-1RECORDPLAYER.webp',
+    '/sqlrecord/resources/imgs/product/radio/ROCHESTER8-IN-1RECORDPLAYER.webp',
+    '',
+    '',
+    '',
+    'radio'
+);
+    
+    
 -- 고객접대(qna) --
 drop table qna;
 select * from qna;
@@ -91,25 +135,35 @@ create table inventory (
     resdate timestamp default current_timestamp		-- 입고일
 );
 
--- 구매페이지(sales) --
-drop table sales;
-desc sales;
-create table sales (
-	sno int auto_increment primary key,		-- 판매번호
-	content varchar(4000) ,					-- 주문 정보
-    amount int default 1 not null,			-- 주문량
-    tot int not null,						-- 총 금액
-    id varchar(30) not null,				-- 회원아이디
-    paymethod varchar(50) not null,			-- 결제방법
-    paynum int not null,					-- 결제번호
-    addr varchar(300) not null,				-- 주소
-    tel varchar(50) not null, 				-- 연락처
-    delcom varchar(50) not null,			-- 배송사
-    deltel varchar(50) not null, 			-- 배송사 번호
-    delno varchar(50) not null, 			-- 배송코드
-    delstatus varchar(50) not null, 		-- 배송상태
-    st varchar(50) not null					-- 거래상태
+-- 구매정보(order) --
+create table orderone ( 
+	ono int auto_increment primary key,
+	id varchar(30),
+	addr1  varchar(100) not null,
+	addr2 varchar(100) not null,
+	postcode varchar(20) not null,
+	total_price int not null
 );
+
+-- 구매상세정보(client & admin shared) --
+create table order_detail (
+  odno int auto_increment primary key,
+  ono int,
+  amount int not null,
+  total_d_price int not null, 				-- 갯수 * 물품가격 (해당 물품에 대한 총가격)
+  status varchar(100) not null 				-- 결제완료 , 배송완료 , 환불요청(완료) , 교환요청(완료)
+);
+
+-- 환불 교환 정보 --
+create table order_exchange (
+  oeno int auto_increment primary key,
+  odno int, 	 							-- 어떤 구매 물품?
+  pno int, 									-- 교환시
+  ex_status varchar(100) not null, 			-- 환불 or 교환
+  reason varchar(500) not null,
+  amount int 								-- 교환시 갯수는 같아야함. (유저의 선택권이 없음) , 환불 시 몇개를 환불?
+); 
+	
 
 -- 장바구니(basket) --
 drop table basket;
@@ -118,9 +172,21 @@ select * from basket;
 create table basket (
 	bskno int auto_increment primary key,	-- 장바구니 번호
     id varchar(30) not null,				-- 회원아이디
-    pno int ,								-- 상품번호
-    gno int , 								-- 게임번호
+    pno int not null,								-- 상품번호
     amount int default 0 not null			-- 담은 수
+);
+
+insert into basket value(
+	default,
+    'dusik123',
+    1,
+    3
+);
+insert into basket value(
+	default,
+    'dusik123',
+    2,
+    1
 );
 
 -- ---------------------- 외래키(fk) 설정 --------------------------------
