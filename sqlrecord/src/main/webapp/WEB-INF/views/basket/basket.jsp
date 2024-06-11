@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <%@ include file="/head.jsp" %>
+<script src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <title>Basket</title>
 <style>
 #section_basket_main {
@@ -99,6 +100,10 @@ input[class="check"]:checked + label:after {
   font-weight: 800;
   cursor: pointer;
 }
+
+.submitBtn.hidden {
+  display: none;
+}
 </style>
 </head>
 <body>
@@ -114,7 +119,7 @@ input[class="check"]:checked + label:after {
 </div>
 
 <div id="section_basket_main">
-  <form onsubmit="return ">
+  <form action="${hpath }/clientOrder/post" method="post">
   <div id="section_basket_main_gridBox">
     <div class="item1">
       <div>선택</div>
@@ -125,7 +130,7 @@ input[class="check"]:checked + label:after {
       
       <c:forEach var="item" items="${list }" varStatus="status">
       
-      <input onclick="onClickCount(this)" checked="checked" class="check" type="checkbox" name="${item.product.pno }" id="check${status.count }" value="${item.product.pno }">
+      <input onclick="onClickCount(this)" checked="checked" class="check" type="checkbox" name="pno" id="check${status.count }" value="${item.product.pno }">
       <label for="check${status.count }"></label>
       <div style="width: 100%; height: 100%;">
         <img src="${item.product.img1 }" style="width: 50%; height: 80%; padding: 10px; object-fit: cover;">
@@ -153,7 +158,8 @@ input[class="check"]:checked + label:after {
         <input type="text" id="totalPrice" readonly="readonly" style="width: 100%; font-size: 30px; background-color: #F4F4F4" >
       </div>
       <br><br><br><br><br>
-      <button class="submitBtn" type="submit" >구매하기</button>
+      <button class="submitBtn" onclick="requestPay()">결제하기</button>
+      <button class="submitBtn hidden" type="submit">결제완료</button>
     </div>
     </div>
     </form>
@@ -181,6 +187,8 @@ function onClickCount(f) {
 	totalInput.value = totalPrice;
 }
 
+
+
 // 초기 계산 값 호출.
 function getTotalPrice() {
 	let priceList = document.querySelectorAll(".price input");
@@ -189,6 +197,47 @@ function getTotalPrice() {
 	document.querySelector("#totalPrice").value = totalPrice;
 }
 getTotalPrice();
+
+
+let ok = false;
+
+var IMP = window.IMP;
+IMP.init("imp33788404"); // 가맹점 식별코드
+
+function generateMerchantUid() {
+    var today = new Date();
+    var hours = today.getHours();
+    var minutes = today.getMinutes();
+    var seconds = today.getSeconds();
+    var milliseconds = today.getMilliseconds();
+    return "IMP" + hours + minutes + seconds + milliseconds;
+}
+
+
+function requestPay() {
+	event.preventDefault();
+    var merchantUid = generateMerchantUid();
+    IMP.request_pay({
+        pg: "kakaopay.TC0ONETIME",
+        pay_method: "card", // 생략가
+        merchant_uid: "order_no_0001", // 상점에서 생성한 고유 주문번호
+        name: "주문명:결제테스트",
+        amount: 100,
+        buyer_email: "test@portone.io",
+        buyer_name: "구매자이름",
+        buyer_tel: "010-1234-5678",
+        buyer_addr: "서울특별시 강남구 삼성동",
+        buyer_postcode: "123-456",
+    },function(rep) {
+    	  document.querySelector('.submitBtn.hidden').click();
+    })
+    
+    
+    
+}
+
+
+
 </script>
 <script src="${hpath }/resources/js/forHeader.js?after1"></script>
 <%@ include file="/footer.jsp" %>

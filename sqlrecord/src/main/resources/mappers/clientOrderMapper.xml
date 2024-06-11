@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+"-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="clientOrder">
+   <!-- 등록된 상품 개수 -->
+    <select id="getOrderCount">
+        select count(*) from Orders 
+    </select>
+	<select id="getOrders" resultType="com.sqlrecord.dto.OrderOne">
+		select * from orderone
+	</select>
+	<select id="getOrder" parameterType="int" resultType="com.sqlrecord.dto.OrderOne">
+		select * from orderone where ono = #{ono}
+	</select>
+	<insert id="insOrder" parameterType="com.sqlrecord.dto.OrderOne">
+		insert into orderone values
+		(default , id=#{id} , addr1=#{addr1} , addr2=#{addr2} , postcode=#{postcode} , total_price=#{totlal_price})
+	</insert>
+	<delete id="delOrder" parameterType="int">
+		delete from orderone where ono=#{ono}
+	</delete> 
+
+
+
+
+</mapper>

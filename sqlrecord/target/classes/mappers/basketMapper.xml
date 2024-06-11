@@ -26,7 +26,7 @@
   <select id="getBaskets" resultMap="basketRM">
 	select b.bskno , b.id , b.amount , p.pno, p.name , p.price ,p.img1  from Basket b 
 	join product p on b.pno = p.pno 
-	where id = 'yain123'
+	where id = 'dusik123'
   </select>
   
   <delete id="delBasket" parameterType="int">
