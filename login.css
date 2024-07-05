@@ -73,7 +73,6 @@ body {
     height: 100%;
     background-image: url('imgs/e2c17eb8fa492366b69bf6c2d0af73a0.jpg');
     background-size: cover;
-    background-position-y: -100px;
     transition: transform 1.2s ease-in-out; /* $switchAT */
 }
 
@@ -240,6 +239,14 @@ input[type=submit] {
 
 input[type=submit]:hover {background: #294242;}
 
+.infofound{
+    display: flex;
+}
+
+#remember {
+    margin-left: 30px;
+}
+
 .infofound a {text-decoration: none;
     color: #1289eb;
     float: left;
@@ -357,4 +364,46 @@ input[id="tab2"]:checked ~.rala2 {background-color: #2f4f4f; color: white;}
     font-weight: 800;
     cursor: pointer;
     width: 25px;
+}
+.login-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 50px;
+    justify-content: center;
+    align-items: center;
+}
+.yhbtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    height: 50px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.yhbtn img {
+    margin-right: 10px;
+}
+.btn-kakao {
+    background-color: #fee500;
+    color: #181600;
+}
+.btn-naver {
+    background-color: #1ec800;
+}
+.btn-google {
+    background-color: #176af0;
+}
+.btn-kakao:hover {
+    background-color: #e9d207;
+}
+.btn-naver:hover {
+    background-color: #25b80b;
+}
+.btn-google:hover {
+    background-color: #0964f7;
 }

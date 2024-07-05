@@ -76,7 +76,7 @@ a {
                 </a>
             </div>
             <div class="navbar-item">
-                <a href="${path1}/board/getBoardList.do">
+                <a href="${path1}/member/term.do">
                     공지사항
                 </a>
             </div>

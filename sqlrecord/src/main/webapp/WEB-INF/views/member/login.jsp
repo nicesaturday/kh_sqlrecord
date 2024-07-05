@@ -49,7 +49,7 @@
             <form action="">
               <label for="idf">이름 </label>
               <input type="text" name="idf" id="idf1" required><br>
-              <label for="idf">주민번호 </label>
+              <label for="idf">이메일 </label>
               <input type="text" name="idf" id="idf2" required>
               <button type="submit" id="fnext">NEXT</button>
             </form>
@@ -60,7 +60,7 @@
               <input type="text" name="idf" id="pwf1" required><br>
               <label for="idf">아이디 </label>
               <input type="text" name="idf" id="pwf2" required>
-              <label for="idf">주민번호 </label>
+              <label for="idf">이메일 </label>
               <input type="text" name="idf" id="pwf3" required>
               <button type="submit" id="fnext1">NEXT</button>
             </form> 
@@ -155,15 +155,18 @@
 			                <label for="birth">생년월일</label>
 			                <input type="date" id="birth" name="birth">
 			            </p>
-			            <p style="font-size: 15px; font-weight: 600;">관심 게임 장르</p>
+			            <p style="font-size: 15px; font-weight: 600;">관심 음악 장르</p>
 			            <p>
-			                <label style="width: 180px;"><input type="checkbox" name="genre" value="RECORD PLAYERS"> RECORD PLAYERS</label>
-			                <label style="width: 180px;"><input type="checkbox" name="genre" value="SPEAKERS"> SPEAKERS</label>
-			                <label style="width: 180px;"><input type="checkbox" name="genre" value="RADIOS"> RADIOS</label>
-			                <label style="width: 180px;"><input type="checkbox" name="genre" value="CD PLAYERS"> CD PLAYERS</label>
-			                <label style="width: 180px;"><input type="checkbox" name="genre" value="CASSETTE PLAYERS"> CASSETTE PLAYERS</label>
-			                <label style="width: 180px;"><input type="checkbox" name="genre" value="MEDIA STANDS"> MEDIA STANDS</label>
-			                <label style="width: 180px;"><input type="checkbox" name="genre" value="VINYL"> VINYL</label>
+			                <label style="width: 180px;"><input type="checkbox" name="genre" value="Rock"> Rock</label>
+			                <label style="width: 180px;"><input type="checkbox" name="genre" value="Pop"> Pop</label>
+			                <label style="width: 180px;"><input type="checkbox" name="genre" value="Jazz"> Jazz</label>
+			                <label style="width: 180px;"><input type="checkbox" name="genre" value="Blues"> Blues</label>
+			                <label style="width: 180px;"><input type="checkbox" name="genre" value="Classical"> Classical</label>
+			                <label style="width: 180px;"><input type="checkbox" name="genre" value="Country"> Country</label>
+			                <label style="width: 180px;"><input type="checkbox" name="genre" value="Hip Hop"> Hip Hop</label>
+			                <label style="width: 180px;"><input type="checkbox" name="genre" value="Electronic"> Electronic</label>
+			                <label style="width: 180px;"><input type="checkbox" name="genre" value="R&B and Soul"> R&B and Soul</label>
+			                <label style="width: 180px;"><input type="checkbox" name="genre" value="Reggae"> Reggae</label>
 			                
 			                <input type="hidden" id="tag1" name="tag1">
 			                <input type="hidden" id="tag2" name="tag2">

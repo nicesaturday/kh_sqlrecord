@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 버튼</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f2f2f2;
+        }
+        .login-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .yhbtn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 250px;
+            height: 50px;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .yhbtn img {
+            margin-right: 10px;
+        }
+        .btn-kakao {
+            background-color: #fee500;
+            color: #181600;
+        }
+        .btn-naver {
+            background-color: #1ec800;
+        }
+        .btn-google {
+            background-color: #176af0;
+        }
+        .btn-kakao:hover {
+            background-color: #e9d207;
+        }
+        .btn-naver:hover {
+            background-color: #25b80b;
+        }
+        .btn-google:hover {
+            background-color: #0964f7;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-buttons">
+        <button class="yhbtn btn-kakao">
+            <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" alt="카카오" width="24" height="24">
+            카카오 로그인
+        </button>
+        <button class="yhbtn btn-naver">
+            <img src="naver.png" alt="네이버" width="24" height="24">
+            네이버 로그인
+        </button>
+        <button class="yhbtn btn-google">
+            <img src="google.png" alt="구글" width="24" height="24">
+            구글 로그인
+        </button>
+    </div>
+</body>
+</html>

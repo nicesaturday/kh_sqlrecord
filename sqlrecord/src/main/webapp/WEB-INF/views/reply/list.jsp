@@ -233,6 +233,16 @@
 		.edit-popup-content button:hover {
 		    background-color: #45a049;
 		}
+		
+		.dropdown select {
+        width: 70px;
+        height: 30px;
+        border: 1px solid #000;
+        font-size: 15px;
+        text-align: center;
+        padding-left: 0;
+        padding-right: 0;
+	   }
     </style>
 </head>
 <body>
@@ -266,6 +276,14 @@
                     <span>${replyCount}개 리뷰</span>
                 </div>
             </div>
+        </div>
+         <div class="dropdown">
+            <label for="itemsPerPage">한 번에 보기&nbsp;:&nbsp;</label>
+            <select id="itemsPerPage" name="itemsPerPage">
+                <option value="12">12</option>
+                <option value="18">18</option>
+                <option value="24">24</option>
+            </select>
         </div>
         <c:if test="${!empty sid}">
         <form id="commentForm" action="${path2 }/reply/insReply.do" method="post" enctype="multipart/form-data">
@@ -305,13 +323,13 @@
 	                        <p class="s1favg" style="font-size: 20px;">★★★★★</p>
 	                        <p class="s1bavg" style="font-size: 20px;">☆☆☆☆☆</p>
 	                    </div>
-                        <h4 class="pavg1" id="yrestar" style="margin:0px;">${reply.star}</h4>
+                        <h4 class="pavg1" class="yrestar" style="margin:0px;">${reply.star}</h4>
                     </div>
 	                    <span id="id">${reply.id}</span>
 	                    <div class="date">${reply.resdate}</div>
 	                </div>
 	                <div class="review-content">
-	                	<span id="yrecon">${reply.content}</span>
+	                	<span class="yrecon">${reply.content}</span>
 	                	<c:if test="${sid == reply.id}">
 		                	<div class="align-right">
 		                        <button class="editButton" onclick="openEditPopup(${reply.rno})">수정</button>
@@ -406,7 +424,7 @@
 		    const reviewElement = $(this).closest('.reviews');
 		    // 댓글 요소에서 rno 값을 가져옵니다.
 		    const rno = reviewElement.data('rno');
-		    const currentContent = $(this).closest('.review-content').find('#yrecon').text();
+		    const currentContent = $(this).closest('.review-content').find('.yrecon').text();
 		    const currentRating = $(this).closest('.review').find('.pavg1').text();
 		    openEditPopup(currentContent, currentRating);
 		});
@@ -418,6 +436,7 @@
 
 	    // 수정 제출 함수
 	    function submitEdit(rno,count) {
+	    	const rno = reviewElement.data('rno'); // 이걸 추가하면 별점 데이터가 다 사라짐.. 그래서 빼고 실행
 		    const updatedContent = document.getElementById('editContent').value;
 		    const updatedRating = document.getElementById('editRatingInput').value;
 			
@@ -439,13 +458,10 @@
 		            closeEditPopup();
 		
 		            // DOM 업데이트
-		            
-		            
-		            
 		            const reviewElement = document.querySelector(`.reviews[data-rno='${rno}']`);
 		            if (reviewElement) {
-		                reviewElement.querySelector('#yrecon').textContent = updatedContent;
-		                reviewElement.querySelector('#yrestar').textContent = updatedRating;
+		                reviewElement.querySelector('.yrecon').textContent = updatedContent;
+		                reviewElement.querySelector('.yrestar').textContent = updatedRating;
 		            }
 		        },
 		        error: function(xhr, status, error) {
